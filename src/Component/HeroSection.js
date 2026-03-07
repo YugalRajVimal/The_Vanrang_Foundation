@@ -34,7 +34,7 @@ export default function HeroSection() {
   }, [index]);
 
   return (
-    <section className="relative w-full min-h-[75vh] sm:min-h-[80vh] md:min-h-[85vh] flex flex-col justify-center md:justify-end text-white overflow-hidden bg-[#F3F6F4]">
+    <section className="relative w-full pt-20 min-h-[75vh] sm:min-h-[80vh] md:min-h-[85vh] flex flex-col justify-center md:justify-end text-white overflow-hidden bg-[#F3F6F4]">
       {/* Fading Background Image */}
       <div
         className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ${

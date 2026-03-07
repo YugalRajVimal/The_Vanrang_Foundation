@@ -1,21 +1,24 @@
+
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-
-// Color theme:
-// Primary: #2E7D32
-// Secondary: #4CAF50
-// Accent: #A5D6A7
-// Background: white
+import {
+  FaHome,
+  FaInfoCircle,
+  FaTree,
+  FaImages,
+  FaUsers,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 
 const navLinks = [
-  { name: "Home", to: "/" },
-  { name: "About", to: "/about" },
-  { name: "Plantation Drives", to: "/plantation-drives" },
-  { name: "Gallery", to: "/gallery" },
-  { name: "Contact / Volunteer", to: "/contact" },
+  { name: "Home", to: "/", icon: FaHome },
+  { name: "About", to: "/about", icon: FaInfoCircle },
+  { name: "Plantation Drives", to: "/plantation-drives", icon: FaTree },
+  { name: "Gallery", to: "/gallery", icon: FaImages },
+  { name: "Contact / Volunteer", to: "/contact", icon: FaUsers },
 ];
 
-// Replace with your external donation link:
 const DONATE_URL = "/contact";
 
 export default function Navbar() {
@@ -23,136 +26,154 @@ export default function Navbar() {
   const location = useLocation();
 
   return (
-    <nav
-      className="w-full border-b overflow-hidden w-screen"
-      style={{ backgroundColor: "#fff", borderColor: "#A5D6A7" }}
-    >
-      <div className="mx-auto md:px-4">
-        <div className="flex items-center justify-between py-2 h-fit">
-          {/* Logo & Branding */}
+    <>
+      {/* TOP NAVBAR */}
+      <nav className="w-full flex justify-center py-3 bg-transparent fixed top-0 z-50">
+        <div className="bg-white w-[95%]  rounded-full md:rounded shadow-lg px-5 py-3 flex items-center justify-between">
+          {/* Logo */}
           <div className="flex items-center gap-3">
-            <img
-              src="/logo.png"
-              alt="The Vanrang Foundation Logo - Green tree"
-              className="h-16 rounded-sm"
-            />
-            <span className="flex flex-col leading-tight">
-              <span
-                className="font-bold text-lg tracking-wide"
-                style={{ color: "#2E7D32" }}
-              >
-                The Vanrang Foundation
-              </span>
-              <span
-                className="text-xs font-semibold tracking-wider"
-                style={{ color: "#4CAF50" }}
-              >
-                One World One Family
-              </span>
-            </span>
+            <img src="/logo.png" className="h-12" alt="Vanrang Foundation Logo" />
           </div>
+
           {/* Desktop Menu */}
-          <div
-            className="hidden lg:flex items-center gap-8 font-medium"
-            style={{ color: "#2E7D32" }}
-          >
+          <div className="hidden lg:flex gap-8 font-medium text-[#2E7D32]">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.to}
                 to={link.to}
                 className={
-                  "hover:text-[#4CAF50] transition" +
-                  (location.pathname === link.to
-                    ? " text-[#4CAF50] border-b-2 border-[#4CAF50]"
-                    : "")
+                  location.pathname === link.to
+                    ? "border-b-2 border-[#4CAF50]"
+                    : ""
                 }
-                style={{
-                  transition: "color 0.2s",
-                  paddingBottom: "2px",
-                }}
               >
                 {link.name}
               </Link>
             ))}
           </div>
-          {/* Right Section */}
-          <div className="hidden lg:flex items-center gap-4">
-            <a
-              href={DONATE_URL}
-              className="px-5 py-2 rounded-lg font-semibold flex items-center gap-2 shadow"
-              style={{
-                backgroundColor: "#2E7D32",
-                color: "white",
-                boxShadow: "0 1px 8px 0 #A5D6A722",
-                textDecoration: "none",
-              }}
-              type="button"
-            >
-              Donate to Green Causes{" "}
-              <span role="img" aria-label="heart">
-                🌱
-              </span>
-            </a>
-          </div>
-          {/* Mobile Button */}
-          <button
-            className="lg:hidden scale-[2] text-[#2E7D32] mr-4"
-            onClick={() => setOpen(!open)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            type="button"
+
+          {/* Desktop Donate */}
+          <a
+            href={DONATE_URL}
+            className="hidden lg:block bg-[#2E7D32] text-white px-5 py-2 rounded-lg"
           >
-            {open ? (
-              <span role="img" aria-label="close" title="Close">
-                &times;
-              </span>
-            ) : (
-              <span role="img" aria-label="menu" title="Menu">
-                &#9776;
-              </span>
-            )}
+            Donate <span role="img" aria-label="sapling">🌱</span>
+          </a>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden text-[#2E7D32]"
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
+          >
+            <FaBars size={28} />
           </button>
         </div>
-        {/* Mobile Menu */}
-        {open && (
-          <div
-            className="lg:hidden py-4 space-y-4 px-4"
-            style={{ backgroundColor: "#E8F5E9" }}
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.to}
-                className={
-                  "block font-medium" +
-                  (location.pathname === link.to
-                    ? " text-[#4CAF50] font-semibold"
-                    : "")
-                }
-                style={{ color: "#2E7D32" }}
-                onClick={() => setOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <a
-              href="/contact"
-              className="w-full py-2 rounded-lg font-semibold flex items-center justify-center gap-1"
-              style={{
-                backgroundColor: "#4CAF50",
-                color: "white",
-                boxShadow: "0 1px 8px 0 rgba(214, 253, 215, 0.33)",
-                textDecoration: "none",
-              }}
-              // onClick={() => setOpen(false)}
+      </nav>
+
+      {/* SIDE DRAWER MENU (Hamburger, mobile view) */}
+      <div
+        className={`fixed top-0 left-0 h-full w-[80%] bg-white shadow-lg z-50 transform transition-transform ${
+          open ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="p-6 flex justify-between items-center">
+          <img src="/logo.png" className="h-10" alt="Vanrang Foundation Logo" />
+          <button onClick={() => setOpen(false)} aria-label="Close menu">
+            <FaTimes size={26} />
+          </button>
+        </div>
+
+        <nav className="px-8 mt-12 flex flex-col gap-8 text-lg font-medium text-[#2E7D32]">
+          {navLinks.map(({ name, to, icon: Icon }) => (
+            <Link
+              key={to}
+              to={to}
+              onClick={() => setOpen(false)}
+              className={
+                location.pathname === to
+                  ? "flex items-center gap-3 text-[#1E88E5] font-bold"
+                  : "flex items-center gap-3"
+              }
             >
-              Donate to Green Causes{" "}
-              <span role="img" aria-label="heart">
-                🌱
-              </span>
-            </a>
-          </div>
-        )}
+              <Icon size={20} />
+              {name}
+            </Link>
+          ))}
+        </nav>
       </div>
-    </nav>
+
+      {/* BACKDROP */}
+      {open && (
+        <div
+          className="fixed inset-0 bg-black/30 z-40"
+          onClick={() => setOpen(false)}
+          aria-label="Backdrop"
+        />
+      )}
+
+      {/* MOBILE BOTTOM NAV: 5 nav items, Home in center with Icon */}
+      <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-white rounded-full shadow-lg flex justify-between items-center px-3 py-2 z-40">
+        {/* About */}
+        <Link
+          to="/about"
+          className={`flex flex-col items-center text-xs px-2 py-1 ${
+            location.pathname === "/about"
+              ? "text-[#1E88E5] font-semibold"
+              : "text-gray-500"
+          }`}
+        >
+          <FaInfoCircle size={20} />
+          About
+        </Link>
+        {/* Plantation Drives */}
+        <Link
+          to="/plantation-drives"
+          className={`flex flex-col items-center text-xs px-2 py-1 ${
+            location.pathname === "/plantation-drives"
+              ? "text-[#1E88E5] font-semibold"
+              : "text-gray-500"
+          }`}
+        >
+          <FaTree size={20} />
+          Drives
+        </Link>
+        {/* Home - Center with emphasis */}
+        <Link
+          to="/"
+          className={`bg-[#1E88E5] text-white p-4 rounded-full shadow-lg -mt-6 flex flex-col items-center justify-center z-10 border-2 border-white ${
+            location.pathname === "/" ? "ring-2 ring-[#4CAF50]" : ""
+          }`}
+          style={{ minWidth: 64 }}
+        >
+          <FaHome size={24} />
+          <span className="text-xs mt-0.5">Home</span>
+        </Link>
+        {/* Gallery */}
+        <Link
+          to="/gallery"
+          className={`flex flex-col items-center text-xs px-2 py-1 ${
+            location.pathname === "/gallery"
+              ? "text-[#1E88E5] font-semibold"
+              : "text-gray-500"
+          }`}
+        >
+          <FaImages size={20} />
+          Gallery
+        </Link>
+        {/* Contact / Volunteer */}
+        <Link
+          to="/contact"
+          className={`flex flex-col items-center text-xs px-2 py-1 ${
+            location.pathname === "/contact"
+              ? "text-[#1E88E5] font-semibold"
+              : "text-gray-500"
+          }`}
+        >
+          <FaUsers size={20} />
+          Contact
+        </Link>
+      </div>
+    </>
   );
 }

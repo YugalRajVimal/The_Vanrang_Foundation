@@ -60,16 +60,14 @@ export default function PlantationGallery() {
       : images.filter((img) => img.category === active);
 
   return (
-    <section className="bg-[#F3F6F4] py-20 px-6">
+    <section className="bg-[#F3F6F4] py-20 pt-32 px-6">
 
       {/* Heading */}
       <div className="max-w-7xl mx-auto mb-12">
-        <h2 className="text-4xl font-bold mb-2 text-[#2E7D32] font-serif">
+        <h2 className="text-3xl md:text-6xl font-bold mb-2 text-[#2E7D32] font-serif">
           The Vanrang Foundation Gallery
         </h2>
-        <p className="text-[#A5D6A7] font-medium font-serif">
-          Home <span className="mx-2 text-[#4CAF50]">›</span> Gallery
-        </p>
+       
         <p className="mt-2 text-[#4CAF50] max-w-2xl font-serif">
           Inspiring change through tree plantation, community action, youth leadership, and nature restoration. Explore our ongoing impact across India!
         </p>

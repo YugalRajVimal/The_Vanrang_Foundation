@@ -38,7 +38,7 @@ export default function AboutPage() {
   }, [index]);
 
   return (
-    <section className="bg-[#F3F6F4] text-[#2E7D32]">
+    <section className="bg-[#F3F6F4] text-[#2E7D32] pt-20">
       {/* HEADER */}
       <div className="max-w-7xl mx-auto px-6 pt-16  gap-10 items-center">
         <div>

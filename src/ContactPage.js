@@ -9,7 +9,7 @@ import GalleryCarousel from "./Component/GalleryCarousel";
 
 export default function ContactVolunteer() {
   return (
-    <section className="bg-[#E8F5E9] py-20 ">
+    <section className="bg-[#E8F5E9] py-20 pt-32 ">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Header */}
         <div className="mb-14">
