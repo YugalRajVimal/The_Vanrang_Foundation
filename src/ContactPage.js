@@ -211,6 +211,45 @@ export default function ContactVolunteer() {
           </div>
         </div>
       </div>
+      {/* Location Maps */}
+      <div className="mt-16 grid gap-8 md:grid-cols-2 max-w-7xl mx-auto mx-4">
+        {/* Registered Office Map */}
+        <div>
+          <h3 className="text-lg font-semibold text-[#2E7D32] mb-2">
+            Registered Office
+          </h3>
+          <div className="rounded-lg overflow-hidden shadow-md border border-[#A5D6A7]">
+            <iframe
+              title="Registered Office Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7073.479267533285!2d76.6086606959559!3d27.57058990504498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39729954614bb1cd%3A0xa27c9c1ee1eab08b!2sTHE%20VANRANG%20FOUNDATION!5e0!3m2!1sen!2sin!4v1772962674709!5m2!1sen!2sin"
+              width="100%"
+              height="250"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+        {/* Sub Office Map */}
+        <div>
+          <h3 className="text-lg font-semibold text-[#2E7D32] mb-2">
+            Sub Office
+          </h3>
+          <div className="rounded-lg overflow-hidden shadow-md border border-[#A5D6A7]">
+            <iframe
+              title="Sub Office Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7073.575408013053!2d76.59538566977537!3d27.5690984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397299484a3e6e77%3A0x7d08413408bff84e!2sTHE%20VANRANG%20FOUNDATION!5e0!3m2!1sen!2sin!4v1772962692982!5m2!1sen!2sin"
+              width="100%"
+              height="250"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
       <div className="mt-24"></div>
       <GalleryCarousel />
     </section>

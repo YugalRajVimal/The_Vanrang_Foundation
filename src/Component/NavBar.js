@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   FaHome,
@@ -24,12 +24,46 @@ const DONATE_URL = "/contact";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const [isAtTop, setIsAtTop] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY <= 0) {
+        setIsAtTop(true);
+      } else {
+        setIsAtTop(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
       {/* TOP NAVBAR */}
-      <nav className="w-full flex justify-center py-3 bg-transparent fixed top-0 z-50">
-        <div className="bg-white w-[95%]  rounded-full md:rounded shadow-lg px-5 py-3 flex items-center justify-between">
+      <nav
+        className={
+          `fixed top-0 left-0 right-0 z-50 ` +
+          (isAtTop
+            ? // When at top: flush left/right with full width, flat on top, no rounded-full
+              "w-full flex justify-center py-3 bg-transparent"
+            : // When scrolled: centered, rounded-full, like before
+              "w-full flex justify-center py-3 bg-transparent"
+          )
+        }
+        style={isAtTop ? { margin: 0, padding: 0 } : undefined}
+      >
+        <div
+          className={
+            isAtTop
+              ? // At top: Remove w-[95%] and rounded-full, stretch fully left/right, flat on top
+                "bg-white w-full rounded-none shadow-lg px-5 py-3 flex items-center justify-between"
+              : // Scrolled: original style with side space & rounded
+                "bg-white w-[95%] rounded-full md:rounded shadow-lg px-5 py-3 flex items-center justify-between"
+          }
+          style={isAtTop ? { borderTopLeftRadius: 0, borderTopRightRadius: 0 } : undefined}
+        >
           {/* Logo */}
           <div className="flex items-center gap-3">
             <img src="/logo.png" className="h-12" alt="Vanrang Foundation Logo" />
@@ -113,7 +147,7 @@ export default function Navbar() {
       )}
 
       {/* MOBILE BOTTOM NAV: 5 nav items, Home in center with Icon */}
-      <div className="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-white rounded-full shadow-lg flex justify-between items-center px-3 py-2 z-40">
+      <div className="lg:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-[92%] bg-white rounded-full shadow-lg flex justify-between items-center px-3 py-2 z-40">
         {/* About */}
         <Link
           to="/about"
