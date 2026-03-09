@@ -270,8 +270,8 @@ export default function Navbar() {
         className="lg:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-[92%] rounded-full shadow-lg flex justify-between items-center px-3 py-2 z-40"
         style={{
           backgroundColor: "rgba(255, 255, 255, 0.3)",
-          backdropFilter: "blur(4px)",
-          WebkitBackdropFilter: "blur(4px)",
+          backdropFilter: "blur(6px)",
+          WebkitBackdropFilter: "blur(6px)",
         }}
       >
         {/* About */}
