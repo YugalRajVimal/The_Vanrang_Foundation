@@ -46,10 +46,8 @@ export default function Navbar() {
         className={
           `fixed top-0 left-0 right-0 z-50 ` +
           (isAtTop
-            ? // When at top: flush left/right with full width, flat on top, no rounded-full
-              "w-full flex justify-center py-3 bg-transparent"
-            : // When scrolled: centered, rounded-full, like before
-              "w-full flex justify-center py-3 bg-transparent"
+            ? "w-full flex justify-center py-3 bg-transparent"
+            : "w-full flex justify-center py-3 bg-transparent"
           )
         }
         style={isAtTop ? { margin: 0, padding: 0 } : undefined}
@@ -57,10 +55,8 @@ export default function Navbar() {
         <div
           className={
             isAtTop
-              ? // At top: Remove w-[95%] and rounded-full, stretch fully left/right, flat on top
-                "bg-white w-full rounded-none shadow-lg px-5 py-3 flex items-center justify-between"
-              : // Scrolled: original style with side space & rounded
-                "bg-white w-[95%] rounded-full md:rounded shadow-lg px-5 py-3 flex items-center justify-between"
+              ? "bg-white w-full rounded-none shadow-lg px-5 py-3 flex items-center justify-between"
+              : "bg-white w-[95%] rounded-full md:rounded shadow-lg px-5 py-3 flex items-center justify-between"
           }
           style={isAtTop ? { borderTopLeftRadius: 0, borderTopRightRadius: 0 } : undefined}
         >
@@ -97,44 +93,158 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             className="lg:hidden text-[#2E7D32]"
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
+            onClick={() => setOpen((prevOpen) => !prevOpen)}
+            aria-label={open ? "Close menu" : "Open menu"}
           >
-            <FaBars size={28} />
+            {open ? <FaTimes size={28} /> : <FaBars size={28} />}
           </button>
         </div>
       </nav>
 
-      {/* SIDE DRAWER MENU (Hamburger, mobile view) */}
+      {/* SIDE DRAWER MENU (Mobile) */}
       <div
-        className={`fixed top-0 left-0 h-full w-[80%] bg-white shadow-lg z-50 transform transition-transform ${
+        className={`fixed top-0 left-0 h-full w-fit bg-white shadow-xl z-50 transform transition-transform duration-300 ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
+        style={{
+          // Make sidebar max width and overflow scrollable for small screens only.
+          maxWidth: '85vw',
+          width: '320px',
+          // On small screens only, make it scrollable
+          height: '100vh',
+          overflowY: 'auto',
+          WebkitOverflowScrolling: 'touch'
+        }}
       >
-        <div className="p-6 flex justify-between items-center">
+        {/* Header */}
+        <div className="p-6 flex items-center bg-white">
           <img src="/logo.png" className="h-10" alt="Vanrang Foundation Logo" />
-          <button onClick={() => setOpen(false)} aria-label="Close menu">
-            <FaTimes size={26} />
-          </button>
+          {/* Removed Close button from sidebar itself */}
         </div>
 
-        <nav className="px-8 mt-12 flex flex-col gap-8 text-lg font-medium text-[#2E7D32]">
-          {navLinks.map(({ name, to, icon: Icon }) => (
-            <Link
-              key={to}
-              to={to}
-              onClick={() => setOpen(false)}
-              className={
-                location.pathname === to
-                  ? "flex items-center gap-3 text-[#1E88E5] font-bold"
-                  : "flex items-center gap-3"
-              }
-            >
-              <Icon size={20} />
-              {name}
+        <p className="text-gray-900 text-xl font-bold mb-4 pl-6 px-2 font-serif tracking-wide">
+          THE VANRANG 
+          <br/>
+          FOUNDATION
+        </p>
+
+        <div className="flex flex-col gap-5"></div>
+        <div className="px-6 pb-6 space-y-8">
+          {/* TOP 5 LINKS */}
+          <div className="flex flex-col gap-5">
+            {/* Home */}
+            <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-4">
+              <div className="bg-blue-100 text-blue-600 p-3 rounded-full">
+                <FaHome size={18} />
+              </div>
+              <span className="text-gray-700 font-medium">Home</span>
             </Link>
-          ))}
-        </nav>
+
+            {/* About */}
+            <Link to="/about" onClick={() => setOpen(false)} className="flex items-center gap-4">
+              <div className="bg-pink-100 text-pink-500 p-3 rounded-full">
+                <FaInfoCircle size={18} />
+              </div>
+              <span className="text-gray-700 font-medium">About</span>
+            </Link>
+
+            {/* Plantation Drives */}
+            <Link to="/plantation-drives" onClick={() => setOpen(false)} className="flex items-center gap-4">
+              <div className="bg-green-100 text-green-600 p-3 rounded-full">
+                <FaTree size={18} />
+              </div>
+              <span className="text-gray-700 font-medium">Plantation Drives</span>
+            </Link>
+
+            {/* Gallery */}
+            <Link to="/gallery" onClick={() => setOpen(false)} className="flex items-center gap-4">
+              <div className="bg-blue-100 text-blue-500 p-3 rounded-full">
+                <FaImages size={18} />
+              </div>
+              <span className="text-gray-700 font-medium">Gallery</span>
+            </Link>
+
+            {/* Contact / Volunteer */}
+            <Link to="/contact" onClick={() => setOpen(false)} className="flex items-center gap-4">
+              <div className="bg-yellow-100 text-yellow-600 p-3 rounded-full">
+                <FaUsers size={18} />
+              </div>
+              <span className="text-gray-700 font-medium">Contact / Volunteer</span>
+            </Link>
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-[#E0E0E0] my-4"></div>
+
+          {/* CONTACT DETAILS */}
+          <div>
+            <p className="text-gray-900 text-sm font-semibold mb-3 tracking-wide">
+              CONTACT DETAILS
+            </p>
+            <div className="flex flex-col gap-3">
+              {/* Phones */}
+              <div className="flex items-start gap-3">
+                <div className="bg-blue-100 text-blue-600 p-3 rounded-full">
+                  <FaUsers size={18} />
+                </div>
+                <div>
+                  <div className="text-gray-700 font-medium">Phone:</div>
+                  <a href="tel:+919783068493" className="block text-sm text-blue-800 hover:underline">+91 9783068493</a>
+                  <a href="tel:+919785720688" className="block text-sm text-blue-800 hover:underline">+91 9785720688</a>
+                  <a href="tel:+919256741759" className="block text-sm text-blue-800 hover:underline">+91 9256741759</a>
+                </div>
+              </div>
+              {/* Emails */}
+              <div className="flex items-start gap-3">
+                <div className="bg-purple-100 text-purple-600 p-3 rounded-full">
+                  <FaUsers size={18} />
+                </div>
+                <div>
+                  <div className="text-gray-700 font-medium">E-mail:</div>
+                  <a href="mailto:foundervanrang.org@gmail.com" className="block text-sm text-purple-800 hover:underline">
+                    foundervanrang.org@gmail.com
+                  </a>
+                  <a href="mailto:info@thevanrangfoundation.org" className="block text-sm text-purple-800 hover:underline">
+                    info@thevanrangfoundation.org
+                  </a>
+                </div>
+              </div>
+              {/* Office Location */}
+              <div className="flex items-start gap-3">
+                <div className="bg-green-100 text-green-600 p-3 rounded-full">
+                  <FaTree size={18} />
+                </div>
+                <div>
+                  <div className="text-gray-700 font-medium">Registered Office:</div>
+                  <a
+                    href="https://www.google.com/maps/place/THE+VANRANG+FOUNDATION/@27.572082,76.623481,14z/data=!4m6!3m5!1s0x39729954614bb1cd:0xa27c9c1ee1eab08b!8m2!3d27.5720816!4d76.6234807!16s%2Fg%2F11ylzs1klg?hl=en&entry=ttu&g_ep=EgoyMDI2MDMwNC4xIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-sm text-green-800 hover:underline"
+                  >
+                    View on Google Maps
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="bg-green-100 text-green-600 p-3 rounded-full">
+                  <FaTree size={18} />
+                </div>
+                <div>
+                  <div className="text-gray-700 font-medium">Sub Office:</div>
+                  <a
+                    href="https://www.google.com/maps?ll=27.569098,76.60414&z=14&t=m&hl=en&gl=IN&mapclient=embed&cid=9009522746295580750"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-sm text-green-800 hover:underline"
+                  >
+                    View on Google Maps
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* BACKDROP */}
