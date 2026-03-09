@@ -56,9 +56,18 @@ export default function Navbar() {
           className={
             isAtTop
               ? "bg-white w-full rounded-none shadow-lg px-5 py-3 flex items-center justify-between"
-              : "bg-white w-[95%] rounded-full md:rounded shadow-lg px-5 py-3 flex items-center justify-between"
+              : "w-[95%] rounded-full md:rounded shadow-lg px-5 py-3 flex items-center justify-between backdrop-blur-md bg-white/60"
           }
-          style={isAtTop ? { borderTopLeftRadius: 0, borderTopRightRadius: 0 } : undefined}
+          style={
+            isAtTop
+              ? { borderTopLeftRadius: 0, borderTopRightRadius: 0 }
+              : {
+                  // Glass "blur" effect when scrolled. Make it more transparent.
+                  backgroundColor: "rgba(255, 255, 255, 0.3)",
+                  backdropFilter: "blur(4px)",
+                  WebkitBackdropFilter: "blur(4px)",
+                }
+          }
         >
           {/* Logo */}
           <div className="flex items-center gap-3">
@@ -257,13 +266,20 @@ export default function Navbar() {
       )}
 
       {/* MOBILE BOTTOM NAV: 5 nav items, Home in center with Icon */}
-      <div className="lg:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-[92%] bg-white rounded-full shadow-lg flex justify-between items-center px-3 py-2 z-40">
+      <div
+        className="lg:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-[92%] rounded-full shadow-lg flex justify-between items-center px-3 py-2 z-40"
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 0.3)",
+          backdropFilter: "blur(4px)",
+          WebkitBackdropFilter: "blur(4px)",
+        }}
+      >
         {/* About */}
         <Link
           to="/about"
           className={`flex flex-col items-center text-xs px-2 py-1 ${
             location.pathname === "/about"
-              ? "text-[#1E88E5] font-semibold"
+              ? "text-[#388d3c] font-semibold"
               : "text-gray-500"
           }`}
         >
@@ -275,7 +291,7 @@ export default function Navbar() {
           to="/plantation-drives"
           className={`flex flex-col items-center text-xs px-2 py-1 ${
             location.pathname === "/plantation-drives"
-              ? "text-[#1E88E5] font-semibold"
+              ? "text-[#388d3c] font-semibold"
               : "text-gray-500"
           }`}
         >
@@ -285,7 +301,7 @@ export default function Navbar() {
         {/* Home - Center with emphasis */}
         <Link
           to="/"
-          className={`bg-[#1E88E5] text-white p-4 rounded-full shadow-lg -mt-6 flex flex-col items-center justify-center z-10 border-2 border-white ${
+          className={`bg-[#388d3c] text-white p-4 rounded-full shadow-lg -mt-6 flex flex-col items-center justify-center z-10 border-2 border-white ${
             location.pathname === "/" ? "ring-2 ring-[#4CAF50]" : ""
           }`}
           style={{ minWidth: 64 }}
@@ -298,7 +314,7 @@ export default function Navbar() {
           to="/gallery"
           className={`flex flex-col items-center text-xs px-2 py-1 ${
             location.pathname === "/gallery"
-              ? "text-[#1E88E5] font-semibold"
+              ? "text-[#388d3c] font-semibold"
               : "text-gray-500"
           }`}
         >
@@ -310,7 +326,7 @@ export default function Navbar() {
           to="/contact"
           className={`flex flex-col items-center text-xs px-2 py-1 ${
             location.pathname === "/contact"
-              ? "text-[#1E88E5] font-semibold"
+              ? "text-[#388d3c] font-semibold"
               : "text-gray-500"
           }`}
         >
