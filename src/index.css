@@ -16,7 +16,7 @@
   transform: translateX(-50%);
   width: 200%;
   height: 72px;
-  background: #E8F5E9; /* same as section bg */
+  background:#fdf6ec; /* same as section bg */
   z-index: 10;
   pointer-events: none;
 }

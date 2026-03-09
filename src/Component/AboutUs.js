@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { FaTree, FaLeaf, FaHandsHelping, FaUserFriends } from "react-icons/fa";
 
-// images taken from GalleryCarousel.js (lines 3-11)
+// images taken from GalleryCarousel.js
 const images = [
   "/assets/Img1.jpeg",
   "/assets/Img2.jpeg",
@@ -11,6 +11,20 @@ const images = [
   "/assets/Img5.jpeg",
   "/assets/Img6.jpeg",
 ];
+
+// --- THEME: Define CSS vars in global styles or Tailwind config. ---
+// Example (for global CSS, not needed here if Tailwind config is used):
+// :root {
+//   --clr-primary: #E76F51;
+//   --clr-primary-dark: #c85033;
+//   --clr-secondary: #F4A261;
+//   --clr-secondary-dark: #d38736;
+//   --clr-accent: #E9C46A;
+//   --clr-background: #FDF6EC;
+//   --clr-surface: #ffffff;
+//   --clr-text-primary: #2D2D2D;
+//   --clr-text-secondary: #6B6B6B;
+// }
 
 export default function AboutUs() {
   // Handler to scroll to top on link click
@@ -23,7 +37,7 @@ export default function AboutUs() {
 
   useEffect(() => {
     const timeout1 = setTimeout(() => {
-      // fade-out handled in CSS transition classes
+      // fade handled in CSS transition classes
     }, 3500); // Image visible for ~3.5s
 
     const timeout2 = setTimeout(() => {
@@ -37,30 +51,31 @@ export default function AboutUs() {
   }, [index]);
 
   return (
-    <section className="bg-green-50 pt-16 sm:pt-20">
+    <section
+      className="bg-bg pt-16 sm:pt-20"
+      // bg-[var(--clr-background)] if using vanilla CSS vars
+    >
       <div className="mx-auto max-w-7xl px-2 xs:px-3 sm:px-4">
         <div className="flex flex-col-reverse md:flex-col-reverse lg:flex-row items-center gap-8 xs:gap-10 lg:gap-14 xl:gap-20 mb-8 sm:mb-10">
           {/* Left content */}
           <div className="flex-1 w-full lg:w-1/2 text-left order-2 lg:order-1">
-            <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-2">
+            <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-2">
               The Vanrang Foundation
             </h2>
-            <p className="font-serif text-green-700 font-semibold mt-2 text-lg xs:text-xl md:text-2xl mb-4 xs:mb-6">
-              One World One Family
+            <p className="font-serif text-accent font-semibold mt-2 text-lg xs:text-xl md:text-2xl mb-4 xs:mb-6">
+              One World, One Family
             </p>
-            <h3 className="font-serif text-xl xs:text-2xl md:text-3xl font-semibold text-gray-800 mb-4 xs:mb-6">
-              Greening Communities, Inspiring Change
+            <h3 className="font-serif text-xl xs:text-2xl md:text-3xl font-semibold text-text-primary mb-4 xs:mb-6">
+              Empowering Communities, Inspiring Change
             </h3>
-            <p className="text-gray-700 leading-relaxed max-w-xl mb-7 xs:mb-8 text-sm xs:text-base sm:text-lg">
-              The Vanrang Foundation is a non-profit dedicated to creating a sustainable future through tree plantation, environmental awareness, and community-led programs.
-              <br />
-              <br />
-              We engage youth, schools, and rural communities in transformative projects that nurture green spaces, spread eco-consciousness, and empower collective action for our planet. Join us in growing forests, uplifting lives, and building a greener tomorrow—One World, One Family.
+            <p className="text-text-secondary leading-relaxed max-w-xl mb-7 xs:mb-8 text-sm xs:text-base sm:text-lg">
+              The Vanrang Foundation is a non-profit dedicated to building a brighter, more inclusive, and sustainable future. Our social impact initiatives span education, health, women & youth empowerment, rural upliftment, and environmental stewardship.<br /><br />
+              We partner with youth, schools, and grassroots communities for impactful humanitarian projects that nurture hope and catalyze positive change. Join us in uplifting lives, spreading awareness, and shaping a more compassionate world—One World, One Family.
             </p>
             <div className="mb-0">
               <a
                 href="/about"
-                className="inline-block px-5 xs:px-7 py-2.5 xs:py-3 rounded-lg font-semibold bg-[#388E3C] hover:bg-[#25672c] text-white shadow-lg transition text-base xs:text-lg"
+                className="inline-block px-5 xs:px-7 py-2.5 xs:py-3 rounded-lg font-semibold bg-primary text-white shadow-theme hover:bg-primary-dark focus:bg-primary-dark transition text-base xs:text-lg focus:outline-none"
                 style={{ letterSpacing: "0.03em" }}
                 onClick={handleLinkClick}
               >
@@ -68,7 +83,6 @@ export default function AboutUs() {
               </a>
             </div>
           </div>
-
           {/* Right image with fading slider */}
           <div className="flex-1 w-full lg:w-1/2 flex justify-center items-center min-h-[180px] xs:min-h-[200px] sm:min-h-[240px] md:min-h-[260px] lg:min-h-[280px] order-1 lg:order-2 mb-6 lg:mb-0">
             <div
@@ -87,7 +101,7 @@ export default function AboutUs() {
                   src={img}
                   alt={`The Vanrang Foundation Work ${i + 1}`}
                   className={
-                    `rounded-xl shadow-2xl w-full h-full object-cover absolute top-0 left-0
+                    `rounded-xl shadow-lg w-full h-full object-cover absolute top-0 left-0
                     transition-opacity duration-700 ease-in-out
                     ${i === index ? "opacity-100 z-10" : "opacity-0 z-0"}`
                   }
@@ -101,8 +115,8 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-      {/* Bottom Stats Bar */}
-      <div className="relative w-full bg-[#1B5E20] mt-12 xs:mt-16">
+      {/* Bottom Stats Bar - alternates surface color (white) */}
+      <div className="relative w-full bg-surface mt-12 xs:mt-16 shadow-sm">
         <div className="
           max-w-7xl mx-auto 
           grid grid-cols-2 sm:grid-cols-4 
@@ -111,26 +125,26 @@ export default function AboutUs() {
           px-2 xs:px-4
         ">
           <Stat
-            icon={<FaTree className="text-[#A5D6A7]" />}
-            number={<span className="text-white">200K+</span>}
-            label={<span className="text-[#A5D6A7]">{`Trees Planted`}</span>}
+            icon={<FaTree className="text-accent-dark" />}
+            number={<span className="text-primary">200K+</span>}
+            label={<span className="text-accent-dark">{`Trees Planted`}</span>}
           />
           <Stat
-            icon={<FaUserFriends className="text-[#A5D6A7]" />}
-            number={<span className="text-white">10K+</span>}
+            icon={<FaUserFriends className="text-secondary" />}
+            number={<span className="text-primary">10K+</span>}
             label={
-              <span className="text-[#A5D6A7]">{`Youth & Volunteer Force`}</span>
+              <span className="text-secondary">{`Youth & Volunteers`}</span>
             }
           />
           <Stat
-            icon={<FaHandsHelping className="text-[#A5D6A7]" />}
-            number={<span className="text-white">350+</span>}
-            label={<span className="text-[#A5D6A7]">{`Community Programs`}</span>}
+            icon={<FaHandsHelping className="text-primary" />}
+            number={<span className="text-primary">350+</span>}
+            label={<span className="text-primary">{`Community Programs`}</span>}
           />
           <Stat
-            icon={<FaLeaf className="text-[#A5D6A7]" />}
-            number={<span className="text-white">100+</span>}
-            label={<span className="text-[#A5D6A7]">{`Schools Reached`}</span>}
+            icon={<FaLeaf className="text-secondary" />}
+            number={<span className="text-primary">100+</span>}
+            label={<span className="text-secondary">{`Schools Reached`}</span>}
           />
         </div>
       </div>
@@ -140,25 +154,32 @@ export default function AboutUs() {
 
 function Stat({ icon, number, label }) {
   return (
-    <div className="flex flex-col items-center text-center gap-2 min-w-0">
-      <div className="text-2xl xs:text-3xl sm:text-4xl">{icon}</div>
-      <h4 className="font-serif font-bold text-base xs:text-lg sm:text-xl text-[#2E7D32]">{number}</h4>
-      <p className="text-[#4CAF50] text-xs xs:text-sm sm:text-base font-semibold break-words">{label}</p>
+    <div className="flex flex-col items-center text-center gap-2 min-w-0 bg-white rounded-xl px-2 py-4 shadow-card">
+      <div className="text-2xl xs:text-3xl sm:text-4xl mb-1">{icon}</div>
+      <h4 className="font-serif font-bold text-base xs:text-lg sm:text-xl text-primary">{number}</h4>
+      <p className="text-text-secondary text-xs xs:text-sm sm:text-base font-semibold break-words">{label}</p>
     </div>
   );
 }
 
 /*
-Optional CSS if you want finer control (e.g. add to your global or component stylesheet):
+To support this theming:
+- The Tailwind config should map: 
+  bg-primary, bg-primary-dark, bg-secondary, bg-secondary-dark, 
+  bg-accent, bg-accent-dark, bg-bg (background), bg-surface, 
+  text-primary, text-secondary, text-accent, text-accent-dark, 
+  text-bg, text-surface, text-text-primary, text-text-secondary, etc.
 
-.fade-ani-in { animation: fadeIn 0.8s; }
-.fade-ani-out { animation: fadeOut 0.7s; }
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to   { opacity: 0; }
-}
+- Example of shadows in Tailwind config:
+  "shadow-theme": "0 2px 10px 0 #E76F511A", 
+  "shadow-card": "0 2px 8px 0 rgba(231,111,81,0.09)",
+  etc.
+
+- Use :focus and :hover classes for accessibly strong states.
+
+- Remove all green and replace with hues and classes as above.
+
+- Use "bg-bg" for light beige sections, "bg-surface" for white card/alternate backgrounds.
+
+- If not using Tailwind for variables, use global :root { --var } as comments above.
 */

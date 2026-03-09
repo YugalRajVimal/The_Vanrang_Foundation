@@ -11,6 +11,15 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
+// Color definitions for icon backgrounds (using CSS vars)
+const iconBgMap = [
+  "bg-primary/10 text-primary",          // Home
+  "bg-secondary/10 text-secondary",      // About
+  "bg-accent/10 text-accent-dark",      // Plantation Drives
+  "bg-orange-200 text-secondary",        // Gallery (closer to secondary)
+  "bg-yellow-100 text-accent-dark",      // Contact / Volunteer
+];
+
 const navLinks = [
   { name: "Home", to: "/", icon: FaHome },
   { name: "About", to: "/about", icon: FaInfoCircle },
@@ -39,31 +48,81 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // For active states
+  const activeLink =
+    "border-b-2 border-primary text-primary font-semibold";
+  const navLink =
+    "hover:text-primary transition-colors duration-150 text-text-secondary px-1 pb-1";
+  const donateBtn =
+    "hidden lg:block bg-primary text-white hover:bg-primary-dark transition-colors duration-150 px-6 py-2 rounded-lg font-semibold shadow-md focus:ring-2 focus:ring-primary-dark focus:outline-none";
+  const menuBtn =
+    "lg:hidden text-primary hover:text-primary-dark focus:outline-none";
+  // Mobile nav item
+  const sideNavItem = (idx, path) =>
+    `flex items-center gap-4 group ${location.pathname === path
+      ? "text-primary font-semibold"
+      : "text-text-secondary"
+    }`;
+
   return (
     <>
+      {/* -- GLOBAL THEME -- */}
+      {/* This should ideally go to index.css or App.js, but included for reference */}
+      <style>{`
+        :root {
+          --primary: #E76F51;
+          --primary-dark: #bf4a2a;
+          --secondary: #F4A261;
+          --secondary-dark: #cc7b32;
+          --accent: #E9C46A;
+          --accent-dark: #b68a27;
+          --bg: #FDF6EC;
+          --surface: #FFFFFF;
+          --text-primary: #2D2D2D;
+          --text-secondary: #6B6B6B;
+        }
+        .bg-primary { background-color: var(--primary) !important; }
+        .bg-primary-dark { background-color: var(--primary-dark) !important; }
+        .bg-secondary { background-color: var(--secondary) !important; }
+        .bg-secondary-dark { background-color: var(--secondary-dark) !important; }
+        .bg-accent { background-color: var(--accent) !important; }
+        .bg-accent-dark { background-color: var(--accent-dark) !important; }
+        .bg-bg { background-color: var(--bg) !important; }
+        .bg-surface { background-color: var(--surface) !important; }
+        .text-primary { color: var(--primary) !important; }
+        .text-primary-dark { color: var(--primary-dark) !important; }
+        .text-secondary { color: var(--secondary) !important; }
+        .text-accent { color: var(--accent) !important; }
+        .text-accent-dark { color: var(--accent-dark) !important; }
+        .text-text-primary { color: var(--text-primary) !important; }
+        .text-text-secondary { color: var(--text-secondary) !important; }
+        .border-primary { border-color: var(--primary) !important; }
+        .border-secondary { border-color: var(--secondary) !important; }
+        .shadow-theme {
+          box-shadow: 0 2px 12px 0 rgba(231, 111, 81, 0.08), 0 1.5px 5px 0 rgba(44, 34, 26, 0.03);
+        }
+      `}</style>
+
       {/* TOP NAVBAR */}
       <nav
         className={
           `fixed top-0 left-0 right-0 z-50 ` +
-          (isAtTop
-            ? "w-full flex justify-center py-3 bg-transparent"
-            : "w-full flex justify-center py-3 bg-transparent"
-          )
+          "w-full flex justify-center py-3 bg-transparent"
         }
         style={isAtTop ? { margin: 0, padding: 0 } : undefined}
+        aria-label="Main navigation"
       >
         <div
           className={
             isAtTop
-              ? "bg-white w-full rounded-none shadow-lg px-5 py-3 flex items-center justify-between"
-              : "w-[95%] rounded-full md:rounded shadow-lg px-5 py-3 flex items-center justify-between backdrop-blur-md bg-white/60"
+              ? "bg-surface w-full rounded-none shadow-theme px-5 py-3 flex items-center justify-between"
+              : "w-[95%] rounded-full md:rounded shadow-theme px-5 py-3 flex items-center justify-between backdrop-blur-md bg-surface/70"
           }
           style={
             isAtTop
               ? { borderTopLeftRadius: 0, borderTopRightRadius: 0 }
               : {
-                  // Glass "blur" effect when scrolled. Make it more transparent.
-                  backgroundColor: "rgba(255, 255, 255, 0.3)",
+                  backgroundColor: "rgba(255,255,255,0.7)",
                   backdropFilter: "blur(4px)",
                   WebkitBackdropFilter: "blur(4px)",
                 }
@@ -71,19 +130,24 @@ export default function Navbar() {
         >
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img src="/logo.png" className="h-12" alt="Vanrang Foundation Logo" />
+            <img
+              src="/logo.png"
+              className="h-12"
+              style={{ borderRadius: 6, background: "var(--bg)" }}
+              alt="Vanrang Foundation Logo"
+            />
+            {/* Optionally, logo text */}
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex gap-8 font-medium text-[#2E7D32]">
-            {navLinks.map((link) => (
+          <div className="hidden lg:flex gap-8 font-medium text-text-secondary">
+            {navLinks.map((link, idx) => (
               <Link
                 key={link.to}
                 to={link.to}
                 className={
-                  location.pathname === link.to
-                    ? "border-b-2 border-[#4CAF50]"
-                    : ""
+                  (location.pathname === link.to ? activeLink : navLink) +
+                  " transition-all duration-200"
                 }
               >
                 {link.name}
@@ -94,44 +158,45 @@ export default function Navbar() {
           {/* Desktop Donate */}
           <a
             href={DONATE_URL}
-            className="hidden lg:block bg-[#2E7D32] text-white px-5 py-2 rounded-lg"
+            className={donateBtn}
+            style={{ letterSpacing: "0.04em" }}
           >
-            Donate <span role="img" aria-label="sapling">🌱</span>
+            Donate <span role="img" aria-label="heart">❤️</span>
           </a>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-[#2E7D32]"
+            className={menuBtn}
             onClick={() => setOpen((prevOpen) => !prevOpen)}
             aria-label={open ? "Close menu" : "Open menu"}
           >
-            {open ? <FaTimes size={28} /> : <FaBars size={28} />}
+            {open
+              ? <FaTimes size={28} />
+              : <FaBars size={28} />
+            }
           </button>
         </div>
       </nav>
 
       {/* SIDE DRAWER MENU (Mobile) */}
       <div
-        className={`fixed top-0 left-0 h-full w-fit bg-white shadow-xl z-50 transform transition-transform duration-300 ${
+        className={`fixed top-0 left-0 h-full w-fit bg-surface shadow-theme z-50 transform transition-transform duration-300 ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
         style={{
-          // Make sidebar max width and overflow scrollable for small screens only.
-          maxWidth: '85vw',
-          width: '320px',
-          // On small screens only, make it scrollable
-          height: '100vh',
-          overflowY: 'auto',
-          WebkitOverflowScrolling: 'touch'
+          maxWidth: "85vw",
+          width: "320px",
+          height: "100vh",
+          overflowY: "auto",
+          WebkitOverflowScrolling: "touch",
         }}
+        aria-label="Mobile navigation"
       >
         {/* Header */}
-        <div className="p-6 flex items-center bg-white">
-          <img src="/logo.png" className="h-10" alt="Vanrang Foundation Logo" />
-          {/* Removed Close button from sidebar itself */}
+        <div className="p-6 flex items-center bg-surface border-b border-bg">
+          <img src="/logo.png" className="h-10" style={{borderRadius: 5, background: 'var(--bg)'}} alt="Vanrang Foundation Logo" />
         </div>
-
-        <p className="text-gray-900 text-xl font-bold mb-4 pl-6 px-2 font-serif tracking-wide">
+        <p className="text-text-primary text-xl font-bold mb-4 pl-6 px-2 font-serif tracking-wide">
           THE VANRANG 
           <br/>
           FOUNDATION
@@ -141,111 +206,97 @@ export default function Navbar() {
         <div className="px-6 pb-6 space-y-8">
           {/* TOP 5 LINKS */}
           <div className="flex flex-col gap-5">
-            {/* Home */}
-            <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-4">
-              <div className="bg-blue-100 text-blue-600 p-3 rounded-full">
-                <FaHome size={18} />
-              </div>
-              <span className="text-gray-700 font-medium">Home</span>
-            </Link>
-
-            {/* About */}
-            <Link to="/about" onClick={() => setOpen(false)} className="flex items-center gap-4">
-              <div className="bg-pink-100 text-pink-500 p-3 rounded-full">
-                <FaInfoCircle size={18} />
-              </div>
-              <span className="text-gray-700 font-medium">About</span>
-            </Link>
-
-            {/* Plantation Drives */}
-            <Link to="/plantation-drives" onClick={() => setOpen(false)} className="flex items-center gap-4">
-              <div className="bg-green-100 text-green-600 p-3 rounded-full">
-                <FaTree size={18} />
-              </div>
-              <span className="text-gray-700 font-medium">Plantation Drives</span>
-            </Link>
-
-            {/* Gallery */}
-            <Link to="/gallery" onClick={() => setOpen(false)} className="flex items-center gap-4">
-              <div className="bg-blue-100 text-blue-500 p-3 rounded-full">
-                <FaImages size={18} />
-              </div>
-              <span className="text-gray-700 font-medium">Gallery</span>
-            </Link>
-
-            {/* Contact / Volunteer */}
-            <Link to="/contact" onClick={() => setOpen(false)} className="flex items-center gap-4">
-              <div className="bg-yellow-100 text-yellow-600 p-3 rounded-full">
-                <FaUsers size={18} />
-              </div>
-              <span className="text-gray-700 font-medium">Contact / Volunteer</span>
-            </Link>
+            {navLinks.map(({ to, name, icon: Icon }, idx) => (
+              <Link
+                key={to}
+                to={to}
+                onClick={() => setOpen(false)}
+                className={sideNavItem(idx, to)}
+              >
+                <span
+                  className={
+                    [
+                      // Map to theme icon backgrounds in new palette
+                      "bg-primary/10 text-primary",
+                      "bg-secondary/10 text-secondary",
+                      "bg-accent/10 text-accent-dark",
+                      "bg-secondary/10 text-secondary-dark",
+                      "bg-accent/10 text-accent-dark"
+                    ][idx] + 
+                    " p-3 rounded-full shadow-sm group-hover:scale-105 transition-transform duration-150"
+                  }
+                >
+                  <Icon size={18} />
+                </span>
+                <span className="font-medium">{name}</span>
+              </Link>
+            ))}
           </div>
 
           {/* Divider */}
-          <div className="border-t border-[#E0E0E0] my-4"></div>
+          <div className="border-t border-bg my-4"></div>
 
           {/* CONTACT DETAILS */}
           <div>
-            <p className="text-gray-900 text-sm font-semibold mb-3 tracking-wide">
+            <p className="text-text-primary text-sm font-semibold mb-3 tracking-wide">
               CONTACT DETAILS
             </p>
             <div className="flex flex-col gap-3">
               {/* Phones */}
               <div className="flex items-start gap-3">
-                <div className="bg-blue-100 text-blue-600 p-3 rounded-full">
+                <div className="bg-primary/10 text-primary p-3 rounded-full">
                   <FaUsers size={18} />
                 </div>
                 <div>
-                  <div className="text-gray-700 font-medium">Phone:</div>
-                  <a href="tel:+919783068493" className="block text-sm text-blue-800 hover:underline">+91 9783068493</a>
-                  <a href="tel:+919785720688" className="block text-sm text-blue-800 hover:underline">+91 9785720688</a>
-                  <a href="tel:+919256741759" className="block text-sm text-blue-800 hover:underline">+91 9256741759</a>
+                  <div className="text-text-secondary font-medium">Phone:</div>
+                  <a href="tel:+919783068493" className="block text-sm text-primary hover:underline hover:text-primary-dark">+91 9783068493</a>
+                  <a href="tel:+919785720688" className="block text-sm text-primary hover:underline hover:text-primary-dark">+91 9785720688</a>
+                  <a href="tel:+919256741759" className="block text-sm text-primary hover:underline hover:text-primary-dark">+91 9256741759</a>
                 </div>
               </div>
               {/* Emails */}
               <div className="flex items-start gap-3">
-                <div className="bg-purple-100 text-purple-600 p-3 rounded-full">
+                <div className="bg-secondary/10 text-secondary p-3 rounded-full">
                   <FaUsers size={18} />
                 </div>
                 <div>
-                  <div className="text-gray-700 font-medium">E-mail:</div>
-                  <a href="mailto:foundervanrang.org@gmail.com" className="block text-sm text-purple-800 hover:underline">
+                  <div className="text-text-secondary font-medium">E-mail:</div>
+                  <a href="mailto:foundervanrang.org@gmail.com" className="block text-sm text-secondary hover:underline hover:text-secondary-dark">
                     foundervanrang.org@gmail.com
                   </a>
-                  <a href="mailto:info@thevanrangfoundation.org" className="block text-sm text-purple-800 hover:underline">
+                  <a href="mailto:info@thevanrangfoundation.org" className="block text-sm text-secondary hover:underline hover:text-secondary-dark">
                     info@thevanrangfoundation.org
                   </a>
                 </div>
               </div>
               {/* Office Location */}
               <div className="flex items-start gap-3">
-                <div className="bg-green-100 text-green-600 p-3 rounded-full">
+                <div className="bg-accent/10 text-accent-dark p-3 rounded-full">
                   <FaTree size={18} />
                 </div>
                 <div>
-                  <div className="text-gray-700 font-medium">Registered Office:</div>
+                  <div className="text-text-secondary font-medium">Registered Office:</div>
                   <a
                     href="https://www.google.com/maps/place/THE+VANRANG+FOUNDATION/@27.572082,76.623481,14z/data=!4m6!3m5!1s0x39729954614bb1cd:0xa27c9c1ee1eab08b!8m2!3d27.5720816!4d76.6234807!16s%2Fg%2F11ylzs1klg?hl=en&entry=ttu&g_ep=EgoyMDI2MDMwNC4xIKXMDSoASAFQAw%3D%3D"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block text-sm text-green-800 hover:underline"
+                    className="block text-sm text-accent-dark hover:underline hover:text-accent"
                   >
                     View on Google Maps
                   </a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="bg-green-100 text-green-600 p-3 rounded-full">
+                <div className="bg-accent/10 text-accent-dark p-3 rounded-full">
                   <FaTree size={18} />
                 </div>
                 <div>
-                  <div className="text-gray-700 font-medium">Sub Office:</div>
+                  <div className="text-text-secondary font-medium">Sub Office:</div>
                   <a
                     href="https://www.google.com/maps?ll=27.569098,76.60414&z=14&t=m&hl=en&gl=IN&mapclient=embed&cid=9009522746295580750"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block text-sm text-green-800 hover:underline"
+                    className="block text-sm text-accent-dark hover:underline hover:text-accent"
                   >
                     View on Google Maps
                   </a>
@@ -267,73 +318,60 @@ export default function Navbar() {
 
       {/* MOBILE BOTTOM NAV: 5 nav items, Home in center with Icon */}
       <div
-        className="lg:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-[92%] rounded-full shadow-lg flex justify-between items-center px-3 py-2 z-40"
+        className="lg:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-[92%] rounded-full shadow-theme flex justify-between items-center px-3 py-2 z-40"
         style={{
-          backgroundColor: "rgba(255, 255, 255, 0.3)",
+          backgroundColor: "rgba(253,246,236,0.85)",
           backdropFilter: "blur(6px)",
           WebkitBackdropFilter: "blur(6px)",
         }}
       >
-        {/* About */}
-        <Link
-          to="/about"
-          className={`flex flex-col items-center text-xs px-2 py-1 ${
-            location.pathname === "/about"
-              ? "text-[#388d3c] font-semibold"
-              : "text-gray-500"
-          }`}
-        >
-          <FaInfoCircle size={20} />
-          About
-        </Link>
-        {/* Plantation Drives */}
-        <Link
-          to="/plantation-drives"
-          className={`flex flex-col items-center text-xs px-2 py-1 ${
-            location.pathname === "/plantation-drives"
-              ? "text-[#388d3c] font-semibold"
-              : "text-gray-500"
-          }`}
-        >
-          <FaTree size={20} />
-          Drives
-        </Link>
+        {navLinks.slice(1, 3).map(({to, icon: Icon, name}, idx) => (
+          <Link
+            key={to}
+            to={to}
+            className={`flex flex-col items-center text-xs px-2 py-1 ${
+              location.pathname === to
+                ? "text-primary font-semibold"
+                : "text-text-secondary hover:text-primary"
+            }`}
+          >
+            <Icon size={20} />
+            {name === "Plantation Drives" ? "Drives" : name}
+          </Link>
+        ))}
+
         {/* Home - Center with emphasis */}
         <Link
           to="/"
-          className={`bg-[#388d3c] text-white p-4 rounded-full shadow-lg -mt-6 flex flex-col items-center justify-center z-10 border-2 border-white ${
-            location.pathname === "/" ? "ring-2 ring-[#4CAF50]" : ""
+          className={`bg-primary text-white p-4 rounded-full shadow-theme -mt-6 flex flex-col items-center justify-center z-10 border-2 border-surface hover:bg-primary-dark focus:ring-2 focus:ring-primary-dark transition-all duration-200 ${
+            location.pathname === "/" ? "ring-2 ring-primary-dark" : ""
           }`}
           style={{ minWidth: 64 }}
         >
           <FaHome size={24} />
           <span className="text-xs mt-0.5">Home</span>
         </Link>
-        {/* Gallery */}
-        <Link
-          to="/gallery"
-          className={`flex flex-col items-center text-xs px-2 py-1 ${
-            location.pathname === "/gallery"
-              ? "text-[#388d3c] font-semibold"
-              : "text-gray-500"
-          }`}
-        >
-          <FaImages size={20} />
-          Gallery
-        </Link>
-        {/* Contact / Volunteer */}
-        <Link
-          to="/contact"
-          className={`flex flex-col items-center text-xs px-2 py-1 ${
-            location.pathname === "/contact"
-              ? "text-[#388d3c] font-semibold"
-              : "text-gray-500"
-          }`}
-        >
-          <FaUsers size={20} />
-          Contact
-        </Link>
+
+        {navLinks.slice(3).map(({to, icon: Icon, name}) => (
+          <Link
+            key={to}
+            to={to}
+            className={`flex flex-col items-center text-xs px-2 py-1 ${
+              location.pathname === to
+                ? "text-primary font-semibold"
+                : "text-text-secondary hover:text-primary"
+            }`}
+          >
+            <Icon size={20} />
+            {
+              name === "Contact / Volunteer"
+                ? "Contact"
+                : name
+            }
+          </Link>
+        ))}
       </div>
     </>
   );
 }
+

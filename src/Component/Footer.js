@@ -6,78 +6,135 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 
+/**
+ * Footer for The Vanrang Foundation
+ * Uses global Tailwind color variables for warm, modern NGO theme.
+ * - Primary:   var(--clr-primary)   | Tailwind: bg-primary / text-primary
+ * - Secondary: var(--clr-secondary) | Tailwind: bg-secondary / text-secondary
+ * - Accent:    var(--clr-accent)    | Tailwind: bg-accent / text-accent
+ * - Background:var(--clr-background)| Tailwind: bg-background / text-background
+ * - Surface:   var(--clr-surface)   | Tailwind: bg-surface / text-surface
+ */
+
 export default function Footer() {
-  // All icons will use white color in dark bg
-  const iconColor = "#FFFFFF";
-  // Slightly lighter dark green for icon backgrounds
-  const iconBgColor = "bg-[#388e3c]";
-  // For hover accent
-  const hoverAccent = "hover:bg-[#66bb6a]";
+  // All icons use the primary color on white/neutral background for accessibility and theme
+  const iconColor = "var(--clr-primary)";
+  const iconBgColor = "bg-accent/80"; // warm yellow with some opacity
+  const hoverAccent =
+    "hover:bg-primary-dark/95 hover:text-white hover:shadow-lg";
+  const focusAccent =
+    "focus:outline-none focus:ring focus:ring-primary/30 focus:ring-offset-2";
+  const iconCommon =
+    "p-3 rounded-full text-primary shadow transition-colors duration-200 " +
+    iconBgColor +
+    " " +
+    hoverAccent +
+    " " +
+    focusAccent +
+    " flex items-center justify-center";
+
   return (
-    <footer className="bg-[#14351c] text-white pt-16 pb-8">
-      <div className="mx-auto px-6">
+    <footer className="bg-background text-text-primary pt-16 pb-8 transition-colors">
+      <div className="mx-auto px-6 max-w-7xl">
         {/* Top Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Logo Only */}
+          {/* Logo, tagline, contact */}
           <div>
             <img
               src="/logo.png"
               alt="The Vanrang Foundation logo"
               className="h-24 mb-2"
             />
-            <p className="mb-3 font-bold text-white text-xl">
+            <p className="mb-3 font-black text-2xl font-serif text-primary">
               The Vanrang Foundation
-              <div className="text-[#A5D6A7] text-base">
+              <div className="text-accent text-base font-bold">
                 <span>One World One Family</span>
               </div>
             </p>
-            <div className="mb-2 mt-2 text-[#A5D6A7]">
-              <span className="font-semibold text-[#A5D6A7]">E-mail:</span>{" "}
+            <div className="mb-2 mt-2 text-text-secondary text-base">
+              <span className="font-semibold text-secondary">E-mail:</span>
               <br />
               <span className="break-all">
-                <a href="mailto:foundervanrang.org@gmail.com" className="underline hover:text-[#81c784] transition-colors">foundervanrang.org@gmail.com</a>
+                <a
+                  href="mailto:foundervanrang.org@gmail.com"
+                  className="underline hover:text-primary-dark transition-colors"
+                >
+                  foundervanrang.org@gmail.com
+                </a>
                 <br />
-                <a href="mailto:info@thevanrangfoundation.org" className="underline hover:text-[#81c784] transition-colors">info@thevanrangfoundation.org</a>
+                <a
+                  href="mailto:info@thevanrangfoundation.org"
+                  className="underline hover:text-primary-dark transition-colors"
+                >
+                  info@thevanrangfoundation.org
+                </a>
               </span>
             </div>
-            <div className="mb-0 mt-2 text-[#A5D6A7]">
-              <span className="font-semibold text-[#A5D6A7]">Phone:</span>{" "}
+            <div className="mb-0 mt-2 text-text-secondary text-base">
+              <span className="font-semibold text-secondary">Phone:</span>
               <br />
               <span className="break-all">
-                <a href="tel:+919783068493" className="underline hover:text-[#81c784] transition-colors">+91 9783068493</a>
+                <a
+                  href="tel:+919783068493"
+                  className="underline hover:text-primary-dark transition-colors"
+                >
+                  +91 9783068493
+                </a>
                 <br />
-                <a href="tel:+919785720688" className="underline hover:text-[#81c784] transition-colors">+91 9785720688</a>
+                <a
+                  href="tel:+919785720688"
+                  className="underline hover:text-primary-dark transition-colors"
+                >
+                  +91 9785720688
+                </a>
                 <br />
-                <a href="tel:+919256741759" className="underline hover:text-[#81c784] transition-colors">+91 9256741759</a>
+                <a
+                  href="tel:+919256741759"
+                  className="underline hover:text-primary-dark transition-colors"
+                >
+                  +91 9256741759
+                </a>
               </span>
             </div>
           </div>
 
-          {/* Get Involved */}
+          {/* Get Involved section */}
           <div>
-            <h3 className="font-semibold text-lg mb-6 text-[#A5D6A7] font-serif">
+            <h3 className="font-semibold text-lg mb-6 text-secondary font-serif tracking-wide">
               Get Involved
             </h3>
-            <ul className="space-y-3">
-              <li className="hover:text-[#81c784] cursor-pointer">Volunteer Opportunities</li>
-              <li className="hover:text-[#81c784] cursor-pointer">School Programs</li>
-              <li className="hover:text-[#81c784] cursor-pointer">Community Drives</li>
-              <li className="hover:text-[#81c784] cursor-pointer">Youth Green Leaders</li>
-              <li className="hover:text-[#81c784] cursor-pointer">Tree Plantation Events</li>
-              <li className="hover:text-[#81c784] cursor-pointer">Contact Us</li>
+            <ul className="space-y-3 text-base text-text-secondary">
+              <li className="hover:text-primary-dark cursor-pointer transition-colors">
+                Volunteer Opportunities
+              </li>
+              <li className="hover:text-primary-dark cursor-pointer transition-colors">
+                School Programs
+              </li>
+              <li className="hover:text-primary-dark cursor-pointer transition-colors">
+                Community Drives
+              </li>
+              <li className="hover:text-primary-dark cursor-pointer transition-colors">
+                Youth Green Leaders
+              </li>
+              <li className="hover:text-primary-dark cursor-pointer transition-colors">
+                Tree Plantation Events
+              </li>
+              <li className="hover:text-primary-dark cursor-pointer transition-colors">
+                Contact Us
+              </li>
             </ul>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-6 text-[#A5D6A7] font-serif">
+            <h3 className="font-semibold text-lg mb-6 text-secondary font-serif tracking-wide">
               Quick Links
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 text-base text-text-secondary">
               <li>
                 <a
                   href="/"
-                  className="hover:text-[#81c784] cursor-pointer transition-colors"
+                  className="hover:text-primary-dark transition-colors"
                 >
                   Home
                 </a>
@@ -85,7 +142,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/about"
-                  className="hover:text-[#81c784] cursor-pointer transition-colors"
+                  className="hover:text-primary-dark transition-colors"
                 >
                   About
                 </a>
@@ -93,7 +150,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/plantation-drives"
-                  className="hover:text-[#81c784] cursor-pointer transition-colors"
+                  className="hover:text-primary-dark transition-colors"
                 >
                   Plantation Drives
                 </a>
@@ -101,7 +158,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/gallery"
-                  className="hover:text-[#81c784] cursor-pointer transition-colors"
+                  className="hover:text-primary-dark transition-colors"
                 >
                   Gallery
                 </a>
@@ -109,7 +166,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/contact"
-                  className="hover:text-[#81c784] cursor-pointer transition-colors"
+                  className="hover:text-primary-dark transition-colors"
                 >
                   Contact / Volunteer
                 </a>
@@ -117,36 +174,43 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Social & Address (Office Address only) */}
+          {/* Address */}
           <div>
-            <h3 className="font-semibold text-lg mb-6 text-[#A5D6A7] font-serif">
+            <h3 className="font-semibold text-lg mb-6 text-secondary font-serif tracking-wide">
               Office
             </h3>
-            {/* Office Address only */}
             <div className="mt-8">
-              <div className="mb-4 text-[#A5D6A7]">
-                <span className="font-semibold">Registered Office:</span>
+              <div className="mb-4 text-text-secondary text-base">
+                <span className="font-semibold text-primary">
+                  Registered Office:
+                </span>
                 <br />
-                189, Adarsh Colony, Daudpur<br />
+                189, Adarsh Colony, Daudpur
+                <br />
                 Alwar, Rajasthan, India – 301001
                 <br />
                 <br />
-                <span className="font-semibold">Sub Office:</span>
+                <span className="font-semibold text-primary">
+                  Sub Office:
+                </span>
                 <br />
-                245, Malan Ki Gali, Hindu Pada<br />
+                245, Malan Ki Gali, Hindu Pada
+                <br />
                 Vikas Path, Alwar, Rajasthan, India – 301001
               </div>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-6 flex-wrap justify-center mt-10">
+        {/* Social Media Icons */}
+        <div className="flex items-center gap-5 flex-wrap justify-center mt-10">
           <a
             href="https://www.facebook.com/share/1AixPGcMh9/"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${iconBgColor} p-3 rounded-full text-white ${hoverAccent} hover:text-[#14351c] transition-colors`}
+            className={iconCommon}
             title="Facebook"
+            aria-label="Facebook"
           >
             <FaFacebookF size={18} color={iconColor} />
           </a>
@@ -154,29 +218,39 @@ export default function Footer() {
             href="https://www.instagram.com/thevanrangfoundation?igsh=ZG1sa20yN2kzcHdp"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${iconBgColor} p-3 rounded-full text-white ${hoverAccent} hover:text-[#14351c] transition-colors`}
+            className={iconCommon}
             title="Instagram"
+            aria-label="Instagram"
           >
             <FaInstagram size={18} color={iconColor} />
           </a>
-          {/* Using a Threads logo image for Threads instead of an icon */}
+          {/* Threads logo as img */}
           <a
             href="https://www.threads.com/@thevanrangfoundation"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${iconBgColor} p-3 rounded-full text-white ${hoverAccent} hover:text-[#14351c] transition-colors flex items-center justify-center`}
+            className={iconCommon}
             title="Threads"
-            style={{ display: "inline-block" }}
+            aria-label="Threads"
+            style={{ display: "inline-flex" }}
           >
-            <img src="/threads.png" alt="Threads" className="w-5 h-5" style={{ filter: "invert(97%) sepia(0%) saturate(0%) hue-rotate(66deg) brightness(128%) contrast(99%)" }} />
-            {/* The filter sets the Threads logo light for use on dark bg; adjust if image has built-in color */}
+            <img
+              src="/threads.png"
+              alt="Threads"
+              className="w-5 h-5"
+              style={{
+                filter:
+                  "invert(39%) sepia(80%) saturate(591%) hue-rotate(340deg) brightness(100%) contrast(95%)",
+              }}
+            />
           </a>
           <a
             href="https://x.com/vanrangofficial"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${iconBgColor} p-3 rounded-full text-white ${hoverAccent} hover:text-[#14351c] transition-colors`}
+            className={iconCommon}
             title="X (Twitter)"
+            aria-label="X (Twitter)"
           >
             <FaXTwitter size={18} color={iconColor} />
           </a>
@@ -184,8 +258,9 @@ export default function Footer() {
             href="https://linkedin.com/company/the-vanrang-foundation"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${iconBgColor} p-3 rounded-full text-white ${hoverAccent} hover:text-[#14351c] transition-colors`}
+            className={iconCommon}
             title="LinkedIn"
+            aria-label="LinkedIn"
           >
             <FaLinkedinIn size={18} color={iconColor} />
           </a>
@@ -193,22 +268,32 @@ export default function Footer() {
             href="https://youtube.com/@vanrangfoundation?si=MEivV0bBvFrxjFTP"
             target="_blank"
             rel="noopener noreferrer"
-            className={`${iconBgColor} p-3 rounded-full text-white ${hoverAccent} hover:text-[#14351c] transition-colors`}
+            className={iconCommon}
             title="YouTube"
+            aria-label="YouTube"
           >
             <FaYoutube size={18} color={iconColor} />
           </a>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-[#225527] mt-12 pt-6 text-center text-[#A5D6A7]">
-          © {new Date().getFullYear()} <span className="text-white font-semibold">
+        {/* Divider/Bottom Bar */}
+        <div className="border-t border-accent/30 mt-12 pt-6 text-center text-text-secondary text-base">
+          © {new Date().getFullYear()}{" "}
+          <span className="text-primary font-semibold">
             The Vanrang Foundation
           </span>{" "}
           — One World One Family. All Rights Reserved.
           <br />
-          <span className="text-sm text-[#81c784]">
-            Tech Partner: <a href="https://gowappily.in" className="underline hover:text-white" target="_blank" rel="noopener noreferrer">GoWappily Infotech</a>
+          <span className="text-sm text-secondary">
+            Tech Partner:{" "}
+            <a
+              href="https://gowappily.in"
+              className="underline hover:text-primary-dark"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GoWappily Infotech
+            </a>
           </span>
         </div>
       </div>

@@ -1,5 +1,16 @@
 import { motion } from "framer-motion";
 
+// Theme colors are now managed via Tailwind CSS config or global CSS variables for ALL components:
+//   --clr-primary: #E76F51;     // Warm NGO Red
+//   --clr-primary-dark: #c85033;
+//   --clr-secondary: #F4A261;   // Soft Orange
+//   --clr-secondary-dark: #d38736;
+//   --clr-accent: #E9C46A;      // Warm Yellow
+//   --clr-background: #FDF6EC;  // Light Beige
+//   --clr-surface: #FFFFFF;
+//   --clr-text-primary: #2D2D2D;
+//   --clr-text-secondary: #6B6B6B;
+
 const images = [
   "/assets/Img1.jpeg",
   "/assets/Img2.jpeg",
@@ -9,69 +20,71 @@ const images = [
   "/assets/Img6.jpeg",
 ];
 
+// Modern warm badge replacing green, using theme colors and a new subtle yellow icon
+function GalleryBadge() {
+  return (
+    <div className="bg-[#fdf6ec] shadow-xl px-7 py-3 rounded-2xl flex items-center gap-3 border-2 border-accent">
+      {/* Icon to bring warm/Humanitarian tone, e.g. modern document/people/heart */}
+      <div className="hidden xs:block text-accent text-[1.7rem] font-bold drop-shadow-sm" aria-label="Gallery badge icon">
+        {/* Yellow heart or document for 'impact' – can swap for theme-appropriate icon */}
+        <span aria-hidden="true">❤️</span>
+      </div>
+      <div>
+        <span className="block font-extrabold text-primary text-xl md:text-[2rem] leading-none font-serif tracking-tight drop-shadow-sm">
+          The Vanrang Foundation
+        </span>
+        <span className="block font-semibold text-secondary text-center text-xs md:text-base tracking-wide mt-1 font-serif">
+          One World One Family
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function GalleryCarousel() {
   // Handler to scroll to top on link click
   const handleGalleryButtonClick = (e) => {
-    // For internal navigation, allow the link to proceed, but scroll to top
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <section className="bg-[#E8F5E9] pb-16 relative overflow-hidden">
-      {/* Center Badge */}
-      <div className=" md:hidden    z-20 w-fit mx-auto">
-        <div className="bg-white/95 shadow-xl px-7 py-3 rounded-2xl flex items-center gap-3 border-2 border-[#2E7D32]">
-          {/* <span className="text-2xl text-[#2E7D32]">🌱</span> */}
-          <div>
-            <span className="block font-bold text-[#2E7D32] text-2xl md:text-[34px] leading-none font-serif">
-              The Vanrang Foundation
-            </span>
-            <span className="block font-semibold text-[#4CAF50] text-center text-sm md:text-base tracking-wide mt-1 font-serif">
-              One World One Family
-            </span>
-          </div>
-        </div>
+    // Section alternates: warm light beige. Use Tailwind's `bg-background` (see Tailwind config).
+    <section className="bg-[#fdf6ec] pb-16 relative overflow-hidden">
+      {/* Center Badge: mobile and desktop */}
+      <div className="md:hidden z-20 w-fit mx-auto mb-6">
+        <GalleryBadge />
       </div>
-
       <div className="relative ribbon-mask">
-        {/* Center Badge */}
-        <div className="hidden md:block  absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
-          <div className="bg-white/95 shadow-xl px-7 py-3 rounded-2xl flex items-center gap-3 border-2 border-[#2E7D32]">
-            {/* <span className="text-2xl text-[#2E7D32]">🌱</span> */}
-            <div>
-              <span className="block font-bold text-[#2E7D32] text-2xl md:text-[34px] leading-none font-serif">
-                The Vanrang Foundation
-              </span>
-              <span className="block font-semibold text-[#4CAF50] text-center text-sm md:text-base tracking-wide mt-1 font-serif">
-                One World One Family
-              </span>
-            </div>
-          </div>
+        {/* Center Badge: desktop (absolute centered) */}
+        <div className="hidden md:block absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+          <GalleryBadge />
         </div>
-
-        {/* Moving Images */}
+        {/* Moving Images (double for seamless loop) */}
         <motion.div
           className="flex"
           animate={{ x: ["0%", "-50%"] }}
           transition={{ repeat: Infinity, duration: 28, ease: "linear" }}
         >
           {[...images, ...images].map((img, i) => (
-            <div key={i} className="min-w-[280px] md:min-w-[360px] lg:min-w-[440px] p-2">
+            <div
+              key={i}
+              className="min-w-[280px] md:min-w-[360px] lg:min-w-[440px] p-2"
+            >
               <img
                 src={img}
-                alt="Tree plantation, environmental awareness or youth participation"
-                className="w-full h-[170px] md:h-[400px] object-cover rounded-2xl border-2 border-[#A5D6A7] shadow-md"
+                alt="Impactful event or program by The Vanrang Foundation"
+                className="w-full h-[170px] md:h-[400px] object-cover rounded-2xl border-2 border-accent shadow-md"
                 loading="lazy"
+                style={{ backgroundColor: "var(--clr-surface, #fff)" }}
               />
             </div>
           ))}
         </motion.div>
-
-        {/* Gallery Button */}
+        {/* Gallery Button: primary button, warm red, modern NGO */}
         <div className="flex justify-center mt-10 absolute left-0 right-0 bottom-6 md:bottom-10 z-30">
           <a
             href="/gallery"
-            className="inline-block px-8 py-3 rounded-lg font-semibold bg-[#388E3C] hover:bg-[#25672c] text-white shadow-lg transition text-lg"
+            className="inline-block px-8 py-3 rounded-lg sm:rounded-xl font-bold bg-primary text-white hover:bg-primary-dark shadow-xl transition text-lg tracking-wide focus:outline-none ring-2 ring-primary/20 font-serif"
             style={{ letterSpacing: "0.03em" }}
             onClick={handleGalleryButtonClick}
           >
