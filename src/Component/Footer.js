@@ -5,6 +5,7 @@ import {
   FaYoutube,
   FaXTwitter,
 } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 /**
  * Footer for The Vanrang Foundation
@@ -105,22 +106,22 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 text-base text-text-secondary">
               <li className="hover:text-primary-dark cursor-pointer transition-colors">
-                Volunteer Opportunities
+                <Link to="/contact">Volunteer Opportunities</Link>
               </li>
               <li className="hover:text-primary-dark cursor-pointer transition-colors">
-                School Programs
+                <Link to="/about">School Programs</Link>
               </li>
               <li className="hover:text-primary-dark cursor-pointer transition-colors">
-                Community Drives
+                <Link to="/plantation-drives">Community Drives</Link>
               </li>
               <li className="hover:text-primary-dark cursor-pointer transition-colors">
-                Youth Green Leaders
+                <Link to="/about">Youth Green Leaders</Link>
               </li>
               <li className="hover:text-primary-dark cursor-pointer transition-colors">
-                Tree Plantation Events
+                <Link to="/plantation-drives">Tree Plantation Events</Link>
               </li>
               <li className="hover:text-primary-dark cursor-pointer transition-colors">
-                Contact Us
+                <Link to="/contact">Contact Us</Link>
               </li>
             </ul>
           </div>
@@ -132,44 +133,52 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 text-base text-text-secondary">
               <li>
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="hover:text-primary-dark transition-colors"
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/about"
+                <Link
+                  to="/about"
                   className="hover:text-primary-dark transition-colors"
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/plantation-drives"
+                <Link
+                  to="/plantation-drives"
                   className="hover:text-primary-dark transition-colors"
                 >
                   Plantation Drives
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/gallery"
+                <Link
+                  to="/gallery"
                   className="hover:text-primary-dark transition-colors"
                 >
                   Gallery
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/contact"
+                <Link
+                  to="/contact"
                   className="hover:text-primary-dark transition-colors"
                 >
                   Contact / Volunteer
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/team"
+                  className="hover:text-primary-dark transition-colors"
+                >
+                  Our Team
+                </Link>
               </li>
             </ul>
           </div>

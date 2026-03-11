@@ -12,11 +12,13 @@ import {
 } from "react-icons/fa";
 
 // Color definitions for icon backgrounds (using CSS vars)
+// Adjusted, adding "Team" (using suitable color mapping)
 const iconBgMap = [
   "bg-primary/10 text-primary",          // Home
   "bg-secondary/10 text-secondary",      // About
-  "bg-accent/10 text-accent-dark",      // Plantation Drives
+  "bg-accent/10 text-accent-dark",       // Plantation Drives
   "bg-orange-200 text-secondary",        // Gallery (closer to secondary)
+  "bg-green-100 text-primary",           // Team (example green palette, tweak as needed)
   "bg-yellow-100 text-accent-dark",      // Contact / Volunteer
 ];
 
@@ -25,6 +27,7 @@ const navLinks = [
   { name: "About", to: "/about", icon: FaInfoCircle },
   { name: "Plantation Drives", to: "/plantation-drives", icon: FaTree },
   { name: "Gallery", to: "/gallery", icon: FaImages },
+  { name: "Team", to: "/team", icon: FaUsers },
   { name: "Contact / Volunteer", to: "/contact", icon: FaUsers },
 ];
 
@@ -68,41 +71,7 @@ export default function Navbar() {
     <>
       {/* -- GLOBAL THEME -- */}
       {/* This should ideally go to index.css or App.js, but included for reference */}
-      <style>{`
-        :root {
-          --primary: #E76F51;
-          --primary-dark: #bf4a2a;
-          --secondary: #F4A261;
-          --secondary-dark: #cc7b32;
-          --accent: #E9C46A;
-          --accent-dark: #b68a27;
-          --bg: #FDF6EC;
-          --surface: #FFFFFF;
-          --text-primary: #2D2D2D;
-          --text-secondary: #6B6B6B;
-        }
-        .bg-primary { background-color: var(--primary) !important; }
-        .bg-primary-dark { background-color: var(--primary-dark) !important; }
-        .bg-secondary { background-color: var(--secondary) !important; }
-        .bg-secondary-dark { background-color: var(--secondary-dark) !important; }
-        .bg-accent { background-color: var(--accent) !important; }
-        .bg-accent-dark { background-color: var(--accent-dark) !important; }
-        .bg-bg { background-color: var(--bg) !important; }
-        .bg-surface { background-color: var(--surface) !important; }
-        .text-primary { color: var(--primary) !important; }
-        .text-primary-dark { color: var(--primary-dark) !important; }
-        .text-secondary { color: var(--secondary) !important; }
-        .text-accent { color: var(--accent) !important; }
-        .text-accent-dark { color: var(--accent-dark) !important; }
-        .text-text-primary { color: var(--text-primary) !important; }
-        .text-text-secondary { color: var(--text-secondary) !important; }
-        .border-primary { border-color: var(--primary) !important; }
-        .border-secondary { border-color: var(--secondary) !important; }
-        .shadow-theme {
-          box-shadow: 0 2px 12px 0 rgba(231, 111, 81, 0.08), 0 1.5px 5px 0 rgba(44, 34, 26, 0.03);
-        }
-      `}</style>
-
+      {/* Theme is included via App.js */}
       {/* TOP NAVBAR */}
       <nav
         className={
@@ -150,7 +119,7 @@ export default function Navbar() {
                   " transition-all duration-200"
                 }
               >
-                {link.name}
+                {link.name === "Contact / Volunteer" ? "Contact" : link.name}
               </Link>
             ))}
           </div>
@@ -204,7 +173,7 @@ export default function Navbar() {
 
         <div className="flex flex-col gap-5"></div>
         <div className="px-6 pb-6 space-y-8">
-          {/* TOP 5 LINKS */}
+          {/* TOP nav links */}
           <div className="flex flex-col gap-5">
             {navLinks.map(({ to, name, icon: Icon }, idx) => (
               <Link
@@ -215,20 +184,15 @@ export default function Navbar() {
               >
                 <span
                   className={
-                    [
-                      // Map to theme icon backgrounds in new palette
-                      "bg-primary/10 text-primary",
-                      "bg-secondary/10 text-secondary",
-                      "bg-accent/10 text-accent-dark",
-                      "bg-secondary/10 text-secondary-dark",
-                      "bg-accent/10 text-accent-dark"
-                    ][idx] + 
+                    iconBgMap[idx] +
                     " p-3 rounded-full shadow-sm group-hover:scale-105 transition-transform duration-150"
                   }
                 >
                   <Icon size={18} />
                 </span>
-                <span className="font-medium">{name}</span>
+                <span className="font-medium">
+                  {name === "Contact / Volunteer" ? "Contact" : name}
+                </span>
               </Link>
             ))}
           </div>
@@ -316,15 +280,16 @@ export default function Navbar() {
         />
       )}
 
-      {/* MOBILE BOTTOM NAV: 5 nav items, Home in center with Icon */}
+      {/* MOBILE BOTTOM NAV: Now 6 items, Home in center with Icon */}
       <div
-        className="lg:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-[92%] rounded-full shadow-theme flex justify-between items-center px-3 py-2 z-40"
+        className="lg:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-[96%] rounded-full shadow-theme flex justify-between items-center px-2 py-2 z-40"
         style={{
           backgroundColor: "rgba(253,246,236,0.85)",
           backdropFilter: "blur(6px)",
           WebkitBackdropFilter: "blur(6px)",
         }}
       >
+        {/* First two after Home */}
         {navLinks.slice(1, 3).map(({to, icon: Icon, name}, idx) => (
           <Link
             key={to}
@@ -340,7 +305,7 @@ export default function Navbar() {
           </Link>
         ))}
 
-        {/* Home - Center with emphasis */}
+        {/* Home - Center */}
         <Link
           to="/"
           className={`bg-primary text-white p-4 rounded-full shadow-theme -mt-6 flex flex-col items-center justify-center z-10 border-2 border-surface hover:bg-primary-dark focus:ring-2 focus:ring-primary-dark transition-all duration-200 ${
@@ -352,6 +317,7 @@ export default function Navbar() {
           <span className="text-xs mt-0.5">Home</span>
         </Link>
 
+        {/* Next items: Gallery, Team, Contact */}
         {navLinks.slice(3).map(({to, icon: Icon, name}) => (
           <Link
             key={to}

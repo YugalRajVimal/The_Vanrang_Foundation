@@ -16,6 +16,7 @@ import AboutPage from './AboutUsPage'
 import PlantationDrives from './PlantationDrives'
 import PlantationGallery from './GalleryPage'
 import ContactVolunteer from './ContactPage'
+import TeamPage from './TeamPage'
 
 
 const Home = () => <div>
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/plantation-drives" element={<PlantationDrives />} />
         <Route path="/gallery" element={<PlantationGallery/>} />
         <Route path="/contact" element={<ContactVolunteer />} />
+        <Route path="/team" element={<TeamPage />} />
 
 
       </Routes>
