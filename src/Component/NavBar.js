@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   FaHome,
@@ -9,16 +9,16 @@ import {
   FaUsers,
   FaBars,
   FaTimes,
+  FaUserFriends, // Add icon for Team
 } from "react-icons/fa";
 
 // Color definitions for icon backgrounds (using CSS vars)
-// Adjusted, adding "Team" (using suitable color mapping)
 const iconBgMap = [
   "bg-primary/10 text-primary",          // Home
   "bg-secondary/10 text-secondary",      // About
-  "bg-accent/10 text-accent-dark",       // Plantation Drives
+  "bg-accent/10 text-accent-dark",      // Plantation Drives
   "bg-orange-200 text-secondary",        // Gallery (closer to secondary)
-  "bg-green-100 text-primary",           // Team (example green palette, tweak as needed)
+  "bg-yellow-100 text-accent-dark",      // Team
   "bg-yellow-100 text-accent-dark",      // Contact / Volunteer
 ];
 
@@ -27,7 +27,7 @@ const navLinks = [
   { name: "About", to: "/about", icon: FaInfoCircle },
   { name: "Plantation Drives", to: "/plantation-drives", icon: FaTree },
   { name: "Gallery", to: "/gallery", icon: FaImages },
-  { name: "Team", to: "/team", icon: FaUsers },
+  { name: "Team", to: "/team", icon: FaUserFriends },
   { name: "Contact / Volunteer", to: "/contact", icon: FaUsers },
 ];
 
@@ -71,7 +71,41 @@ export default function Navbar() {
     <>
       {/* -- GLOBAL THEME -- */}
       {/* This should ideally go to index.css or App.js, but included for reference */}
-      {/* Theme is included via App.js */}
+      <style>{`
+        :root {
+          --primary: #E76F51;
+          --primary-dark: #bf4a2a;
+          --secondary: #F4A261;
+          --secondary-dark: #cc7b32;
+          --accent: #E9C46A;
+          --accent-dark: #b68a27;
+          --bg: #FDF6EC;
+          --surface: #FFFFFF;
+          --text-primary: #2D2D2D;
+          --text-secondary: #6B6B6B;
+        }
+        .bg-primary { background-color: var(--primary) !important; }
+        .bg-primary-dark { background-color: var(--primary-dark) !important; }
+        .bg-secondary { background-color: var(--secondary) !important; }
+        .bg-secondary-dark { background-color: var(--secondary-dark) !important; }
+        .bg-accent { background-color: var(--accent) !important; }
+        .bg-accent-dark { background-color: var(--accent-dark) !important; }
+        .bg-bg { background-color: var(--bg) !important; }
+        .bg-surface { background-color: var(--surface) !important; }
+        .text-primary { color: var(--primary) !important; }
+        .text-primary-dark { color: var(--primary-dark) !important; }
+        .text-secondary { color: var(--secondary) !important; }
+        .text-accent { color: var(--accent) !important; }
+        .text-accent-dark { color: var(--accent-dark) !important; }
+        .text-text-primary { color: var(--text-primary) !important; }
+        .text-text-secondary { color: var(--text-secondary) !important; }
+        .border-primary { border-color: var(--primary) !important; }
+        .border-secondary { border-color: var(--secondary) !important; }
+        .shadow-theme {
+          box-shadow: 0 2px 12px 0 rgba(231, 111, 81, 0.08), 0 1.5px 5px 0 rgba(44, 34, 26, 0.03);
+        }
+      `}</style>
+
       {/* TOP NAVBAR */}
       <nav
         className={
@@ -119,7 +153,7 @@ export default function Navbar() {
                   " transition-all duration-200"
                 }
               >
-                {link.name === "Contact / Volunteer" ? "Contact" : link.name}
+                {link.name}
               </Link>
             ))}
           </div>
@@ -173,7 +207,7 @@ export default function Navbar() {
 
         <div className="flex flex-col gap-5"></div>
         <div className="px-6 pb-6 space-y-8">
-          {/* TOP nav links */}
+          {/* TOP 5 LINKS (now 6 links) */}
           <div className="flex flex-col gap-5">
             {navLinks.map(({ to, name, icon: Icon }, idx) => (
               <Link
@@ -184,15 +218,21 @@ export default function Navbar() {
               >
                 <span
                   className={
-                    iconBgMap[idx] +
+                    [
+                      // Map to theme icon backgrounds in new palette
+                      "bg-primary/10 text-primary",
+                      "bg-secondary/10 text-secondary",
+                      "bg-accent/10 text-accent-dark",
+                      "bg-secondary/10 text-secondary-dark",
+                      "bg-accent/10 text-accent-dark",
+                      "bg-yellow-100 text-accent-dark"
+                    ][idx] + 
                     " p-3 rounded-full shadow-sm group-hover:scale-105 transition-transform duration-150"
                   }
                 >
                   <Icon size={18} />
                 </span>
-                <span className="font-medium">
-                  {name === "Contact / Volunteer" ? "Contact" : name}
-                </span>
+                <span className="font-medium">{name}</span>
               </Link>
             ))}
           </div>
@@ -280,32 +320,44 @@ export default function Navbar() {
         />
       )}
 
-      {/* MOBILE BOTTOM NAV: Now 6 items, Home in center with Icon */}
+      {/* MOBILE BOTTOM NAV: 5 nav items, Home in center with Icon */}
       <div
-        className="lg:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-[96%] rounded-full shadow-theme flex justify-between items-center px-2 py-2 z-40"
+        className="lg:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-[92%] rounded-full shadow-theme flex justify-between items-center px-3 py-2 z-40"
         style={{
           backgroundColor: "rgba(253,246,236,0.85)",
           backdropFilter: "blur(6px)",
           WebkitBackdropFilter: "blur(6px)",
         }}
       >
-        {/* First two after Home */}
-        {navLinks.slice(1, 3).map(({to, icon: Icon, name}, idx) => (
-          <Link
-            key={to}
-            to={to}
-            className={`flex flex-col items-center text-xs px-2 py-1 ${
-              location.pathname === to
-                ? "text-primary font-semibold"
-                : "text-text-secondary hover:text-primary"
-            }`}
-          >
-            <Icon size={20} />
-            {name === "Plantation Drives" ? "Drives" : name}
-          </Link>
-        ))}
+        {/* Updated for 6 links: About, Plantation Drives, Home, Gallery, Team, Contact/Volunteer */}
+        <Link
+          key={navLinks[1].to}
+          to={navLinks[1].to}
+          className={`flex flex-col items-center text-xs px-2 py-1 ${
+            location.pathname === navLinks[1].to
+              ? "text-primary font-semibold"
+              : "text-text-secondary hover:text-primary"
+          }`}
+        >
+          {React.createElement(navLinks[1].icon, { size: 20 })}
+          {navLinks[1].name === "Plantation Drives" ? "Drives" : navLinks[1].name}
+        </Link>
 
-        {/* Home - Center */}
+         {/* Gallery */}
+         <Link
+          key={navLinks[3].to}
+          to={navLinks[3].to}
+          className={`flex flex-col items-center text-xs px-2 py-1 ${
+            location.pathname === navLinks[3].to
+              ? "text-primary font-semibold"
+              : "text-text-secondary hover:text-primary"
+          }`}
+        >
+          <FaImages size={20} />
+          {navLinks[3].name}
+        </Link>
+
+        {/* Home - Center with emphasis */}
         <Link
           to="/"
           className={`bg-primary text-white p-4 rounded-full shadow-theme -mt-6 flex flex-col items-center justify-center z-10 border-2 border-surface hover:bg-primary-dark focus:ring-2 focus:ring-primary-dark transition-all duration-200 ${
@@ -317,25 +369,35 @@ export default function Navbar() {
           <span className="text-xs mt-0.5">Home</span>
         </Link>
 
-        {/* Next items: Gallery, Team, Contact */}
-        {navLinks.slice(3).map(({to, icon: Icon, name}) => (
-          <Link
-            key={to}
-            to={to}
-            className={`flex flex-col items-center text-xs px-2 py-1 ${
-              location.pathname === to
-                ? "text-primary font-semibold"
-                : "text-text-secondary hover:text-primary"
-            }`}
-          >
-            <Icon size={20} />
-            {
-              name === "Contact / Volunteer"
-                ? "Contact"
-                : name
-            }
-          </Link>
-        ))}
+       
+
+        {/* Team */}
+        <Link
+          key={navLinks[4].to}
+          to={navLinks[4].to}
+          className={`flex flex-col items-center text-xs px-2 py-1 ${
+            location.pathname === navLinks[4].to
+              ? "text-primary font-semibold"
+              : "text-text-secondary hover:text-primary"
+          }`}
+        >
+          <FaUserFriends size={20} />
+          {navLinks[4].name}
+        </Link>
+
+        {/* Contact / Volunteer */}
+        <Link
+          key={navLinks[5].to}
+          to={navLinks[5].to}
+          className={`flex flex-col items-center text-xs px-2 py-1 ${
+            location.pathname === navLinks[5].to
+              ? "text-primary font-semibold"
+              : "text-text-secondary hover:text-primary"
+          }`}
+        >
+          <FaUsers size={20} />
+          Contact
+        </Link>
       </div>
     </>
   );

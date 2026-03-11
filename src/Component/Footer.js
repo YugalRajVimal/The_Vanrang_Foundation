@@ -35,7 +35,7 @@ export default function Footer() {
     " flex items-center justify-center";
 
   return (
-    <footer className="bg-background text-text-primary pt-16 pb-8 transition-colors">
+    <footer className="bg-background text-text-primary pt-16 pb-24 md:pb-8 transition-colors">
       <div className="mx-auto px-6 max-w-7xl">
         {/* Top Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
