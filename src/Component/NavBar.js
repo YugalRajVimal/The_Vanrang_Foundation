@@ -415,7 +415,7 @@ export default function Navbar() {
         </Link>
 
         {/* Donate */}
-        <Link
+        {/* <Link
           key={navLinks[6].to}
           to={navLinks[6].to}
           className={`flex flex-col items-center text-xs px-2 py-1 ${
@@ -426,7 +426,7 @@ export default function Navbar() {
         >
           <FaHeart size={20} />
           Donate
-        </Link>
+        </Link> */}
       </div>
     </>
   );
