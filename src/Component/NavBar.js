@@ -10,6 +10,7 @@ import {
   FaBars,
   FaTimes,
   FaUserFriends, // Add icon for Team
+  FaHeart, // Add icon for Donate (optional, you can use another if you prefer)
 } from "react-icons/fa";
 
 // Color definitions for icon backgrounds (using CSS vars)
@@ -20,6 +21,7 @@ const iconBgMap = [
   "bg-orange-200 text-secondary",        // Gallery (closer to secondary)
   "bg-yellow-100 text-accent-dark",      // Team
   "bg-yellow-100 text-accent-dark",      // Contact / Volunteer
+  "bg-pink-100 text-primary",            // Donate (new color, optional)
 ];
 
 const navLinks = [
@@ -29,9 +31,10 @@ const navLinks = [
   { name: "Gallery", to: "/gallery", icon: FaImages },
   { name: "Team", to: "/team", icon: FaUserFriends },
   { name: "Contact / Volunteer", to: "/contact", icon: FaUsers },
+  { name: "Donate", to: "/donate", icon: FaHeart },
 ];
 
-const DONATE_URL = "/contact";
+const DONATE_URL = "/donate";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -104,6 +107,7 @@ export default function Navbar() {
         .shadow-theme {
           box-shadow: 0 2px 12px 0 rgba(231, 111, 81, 0.08), 0 1.5px 5px 0 rgba(44, 34, 26, 0.03);
         }
+        .bg-pink-100 { background-color: #fce7ef !important; }
       `}</style>
 
       {/* TOP NAVBAR */}
@@ -144,7 +148,7 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex gap-8 font-medium text-text-secondary">
-            {navLinks.map((link, idx) => (
+            {navLinks.slice(0, 6).map((link, idx) => (
               <Link
                 key={link.to}
                 to={link.to}
@@ -156,6 +160,18 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
+            {/* Insert Donate as a nav link (hidden on mobile) */}
+            <Link
+              key={navLinks[6].to}
+              to={navLinks[6].to}
+              className="ml-2 hidden xl:inline-block font-semibold hover:text-primary transition-all duration-200 text-pink-700"
+              style={{
+                borderBottom: location.pathname === navLinks[6].to ? '2px solid var(--primary)' : 'none',
+                color: location.pathname === navLinks[6].to ? 'var(--primary)' : undefined
+              }}
+            >
+              {navLinks[6].name}
+            </Link>
           </div>
 
           {/* Desktop Donate */}
@@ -207,7 +223,7 @@ export default function Navbar() {
 
         <div className="flex flex-col gap-5"></div>
         <div className="px-6 pb-6 space-y-8">
-          {/* TOP 5 LINKS (now 6 links) */}
+          {/* ALL LINKS including Donate */}
           <div className="flex flex-col gap-5">
             {navLinks.map(({ to, name, icon: Icon }, idx) => (
               <Link
@@ -219,13 +235,14 @@ export default function Navbar() {
                 <span
                   className={
                     [
-                      // Map to theme icon backgrounds in new palette
+                      // Map to theme icon backgrounds in new palette, add pink for donate
                       "bg-primary/10 text-primary",
                       "bg-secondary/10 text-secondary",
                       "bg-accent/10 text-accent-dark",
                       "bg-secondary/10 text-secondary-dark",
                       "bg-accent/10 text-accent-dark",
-                      "bg-yellow-100 text-accent-dark"
+                      "bg-yellow-100 text-accent-dark",
+                      "bg-pink-100 text-primary"
                     ][idx] + 
                     " p-3 rounded-full shadow-sm group-hover:scale-105 transition-transform duration-150"
                   }
@@ -320,16 +337,16 @@ export default function Navbar() {
         />
       )}
 
-      {/* MOBILE BOTTOM NAV: 5 nav items, Home in center with Icon */}
+      {/* MOBILE BOTTOM NAV: 6 nav items, Home in center with Icon */}
       <div
-        className="lg:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-[92%] rounded-full shadow-theme flex justify-between items-center px-3 py-2 z-40"
+        className="lg:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-[96%] rounded-full shadow-theme flex justify-between items-center px-2 py-2 z-40"
         style={{
           backgroundColor: "rgba(253,246,236,0.85)",
           backdropFilter: "blur(6px)",
           WebkitBackdropFilter: "blur(6px)",
         }}
       >
-        {/* Updated for 6 links: About, Plantation Drives, Home, Gallery, Team, Contact/Volunteer */}
+        {/* About */}
         <Link
           key={navLinks[1].to}
           to={navLinks[1].to}
@@ -343,18 +360,18 @@ export default function Navbar() {
           {navLinks[1].name === "Plantation Drives" ? "Drives" : navLinks[1].name}
         </Link>
 
-         {/* Gallery */}
-         <Link
-          key={navLinks[3].to}
-          to={navLinks[3].to}
+        {/* Plantation Drives */}
+        <Link
+          key={navLinks[2].to}
+          to={navLinks[2].to}
           className={`flex flex-col items-center text-xs px-2 py-1 ${
-            location.pathname === navLinks[3].to
+            location.pathname === navLinks[2].to
               ? "text-primary font-semibold"
               : "text-text-secondary hover:text-primary"
           }`}
         >
-          <FaImages size={20} />
-          {navLinks[3].name}
+          <FaTree size={20} />
+          Drives
         </Link>
 
         {/* Home - Center with emphasis */}
@@ -369,7 +386,19 @@ export default function Navbar() {
           <span className="text-xs mt-0.5">Home</span>
         </Link>
 
-       
+        {/* Gallery */}
+        <Link
+          key={navLinks[3].to}
+          to={navLinks[3].to}
+          className={`flex flex-col items-center text-xs px-2 py-1 ${
+            location.pathname === navLinks[3].to
+              ? "text-primary font-semibold"
+              : "text-text-secondary hover:text-primary"
+          }`}
+        >
+          <FaImages size={20} />
+          {navLinks[3].name}
+        </Link>
 
         {/* Team */}
         <Link
@@ -385,18 +414,18 @@ export default function Navbar() {
           {navLinks[4].name}
         </Link>
 
-        {/* Contact / Volunteer */}
+        {/* Donate */}
         <Link
-          key={navLinks[5].to}
-          to={navLinks[5].to}
+          key={navLinks[6].to}
+          to={navLinks[6].to}
           className={`flex flex-col items-center text-xs px-2 py-1 ${
-            location.pathname === navLinks[5].to
+            location.pathname === navLinks[6].to
               ? "text-primary font-semibold"
-              : "text-text-secondary hover:text-primary"
+              : "text-pink-700 hover:text-primary"
           }`}
         >
-          <FaUsers size={20} />
-          Contact
+          <FaHeart size={20} />
+          Donate
         </Link>
       </div>
     </>
