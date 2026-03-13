@@ -278,23 +278,8 @@ export default function DonationPage() {
               "One time meal for 200 people – ₹3000"
             ]}
           />
-          <DonationSection
-            title="Land Donation (Bhudan)"
-            items={[
-              "1 square yard land – ₹500",
-              "10 square yard land – ₹5000",
-              "50 square yard land – ₹25000",
-              "100 square yard land – ₹50000"
-            ]}
-          />
-          <DonationSection
-            title="Home for Residents (Avaas Seva)"
-            items={[
-              "Residence facility for one person – ₹1 Lakh",
-              "Residence facility for 5 people – ₹5 Lakh",
-              "Residence facility for 10 people – ₹10 Lakh"
-            ]}
-          />
+          
+          
         </div>
       </div>
 
