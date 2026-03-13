@@ -58,9 +58,9 @@ theme.headerLeaf =
 theme.headerTitle =
   "text-4xl md:text-5xl font-bold"
 theme.headerDesc =
-  "mt-3 max-w-xl mx-auto"
+  "mt-3 max-w-6xl mx-auto"
 theme.modalCard =
-  "rounded-xl max-w-xl p-8 relative shadow-lg border"
+  "rounded-xl max-w-6xl  p-8 relative shadow-lg border"
 theme.modalClose =
   "absolute top-4 right-4 transition text-2xl focus:outline-none"
 theme.modalName =
@@ -68,42 +68,84 @@ theme.modalName =
 theme.modalRole =
   "text-center mb-4"
 theme.modalImg =
-  "w-28 h-28 rounded-full mx-auto mb-4 object-cover"
+  "w-32 aspect-[1/1] rounded-full mx-auto mb-4 object-cover"
 theme.modalBio =
   "mb-4 leading-normal"
 theme.modalBlog =
   "text-sm leading-relaxed"
 
+// IMAGES here for demo; use proper photos in production!
 const teamMembers = [
   {
-    name: "Arjun Verma",
-    role: "Founder & Environmentalist",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
-    bio: "Arjun founded The Vanrang Foundation with the vision of restoring nature and creating greener communities. He has led large-scale plantation drives and environmental awareness campaigns.",
-    blog: "Arjun believes that planting trees is one of the most powerful actions individuals can take to combat climate change. Through community participation and youth leadership, he aims to build a sustainable future.",
+    name: "Jatin Kodwani",
+    role: "Volunteer",
+    image: "/team/JatinKodwani.jpeg",
+    bio: `Jatin Kodwani is a dedicated volunteer at The Vanrang Foundation. A 12th Commerce pass-out, he is currently pursuing B.Com and preparing as a CA aspirant. Passionate about social work, Jatin also enjoys sketching, dancing, and watching movies in his free time.`,
+    blog: "",
   },
   {
-    name: "Meera Nair",
-    role: "Program Director",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-    bio: "Meera coordinates plantation drives, school eco-programs, and volunteer activities across rural and urban communities.",
-    blog: "Environmental education is the foundation of lasting change. Meera leads programs that inspire students to protect nature and take responsibility for the environment.",
+    name: "Shaurya Goyal",
+    role: "National Secretary",
+    image: "/team/ShauryaGoyal.jpeg",
+    bio: `Shaurya Goyal is a Finance Analyst specializing in Banking and Finance, driven by a strong passion for financial insights, continuous learning, and meaningful social impact. As the National Secretary of the Vanrang Foundation, he actively contributes to social initiatives and community development. Alongside his professional journey, he nurtures his entrepreneurial vision as the Founder of Netrayi, combining finance, leadership, and innovation to create value for society.`,
+    blog: "",
   },
   {
-    name: "Rahul Iyer",
-    role: "Volunteer Coordinator",
-    image: "https://randomuser.me/api/portraits/men/75.jpg",
-    bio: "Rahul manages volunteer engagement and ensures smooth execution of plantation events.",
-    blog: "Volunteers are the heartbeat of our foundation. Rahul believes empowering young people to plant trees builds lifelong environmental stewardship.",
+    name: "Bhavya Narang",
+    role: "Business & Social Service Volunteer",
+    image: "/team/BhavyaNarang.jpeg",
+    bio: `I am Bhavya Narang, currently managing and expanding my family business with a vision for growth. Alongside Businessman, I am passionate about social service and animal welfare. As an active volunteer with The Vanrang Foundation and the Art of Living Foundation, I contribute to community initiatives, charitable works, and the well-being of street dogs.`,
+    blog: "",
   },
   {
-    name: "Priya Sharma",
-    role: "Community Outreach Lead",
-    image: "https://randomuser.me/api/portraits/women/68.jpg",
-    bio: "Priya connects with schools and rural communities to expand plantation initiatives.",
-    blog: "Community-led plantation drives create real environmental impact. Priya works to bring people together to restore degraded land.",
+    name: "Ms. Chhavi Khanna",
+    role: "Managing Director",
+    image: "/team/MsChhaviKhanna.jpeg",
+    bio: `Ms. Chhavi Khanna is the Managing Director of The Vanrang Foundation and works in the field of fashion designing. She is also a Certified Art of Living Instructor, dedicated to spreading positivity, awareness, and service in society.
+
+Alongside her creative work in fashion designing, she actively contributes to social initiatives and community upliftment through her commitment to service. Passionate about creativity and artistic expression, Chhavi enjoys painting, singing, and other forms of art, which reflect her vibrant and compassionate personality.
+
+Through her leadership, creativity, and dedication to service, she continues to inspire and positively impact the lives of many.`,
+    blog: "",
   },
 ];
+
+// Mentor data
+const mentor = {
+  name: "Mr. Deependra Choudhary",
+  role: "Mentor",
+  image: "/team/MrDeependraChoudhary.jpeg",
+  bio: `Mr. Deependra Choudhary is an accomplished educationist, with a diverse academic background including a B.E. (IT), LL.B., M.A. (English), and a Ph.D. (pursuing). Alongside his administrative career, he has dedicated himself to the Art of Living Foundation as a Senior Teacher, guiding individuals towards inner peace, resilience, and holistic well-being.
+
+With a passion for education, personal growth, and social transformation, Mr. Choudhary integrates his professional expertise with spiritual wisdom to inspire students, colleagues, and communities alike. His work reflects a commitment to nurturing not only intellectual excellence but also emotional balance and human values.`,
+  blog: "",
+};
+
+// Inspiration data
+const inspiration = {
+  name: "Gurudev Sri Sri Ravi Shankar",
+  role: "Inspiration",
+  image: "/team/GurudevJi.jpeg",
+  bio: `Gurudev Sri Sri Ravi Shankar is a globally respected spiritual leader, humanitarian, and the founder of the Art of Living Foundation. Through his teachings on meditation, human values, and the powerful breathing technique Sudarshan Kriya, he has inspired millions of people in over 180 countries to live a stress-free and peaceful life. Honored with India’s prestigious Padma Vibhushan, Gurudev continues to promote peace, compassion, and service across the world. His vision of a stress-free, violence-free society serves as a guiding inspiration for the mission and humanitarian work of The Vanrang Foundation.`,
+  blog: "",
+};
+
+// Founder (Special, separate from generic team grid)
+const founder = {
+  name: "Mr. Dikshant Lalwani",
+  role: "Founder, Chairman & Director",
+  image: "/team/founder.jpeg",
+  bio: `Mr. Dikshant Lalwani is the Founder, Chairman & Director of The Vanrang Foundation, a Section 8 non-profit organization devoted to selfless service, youth empowerment, and community development. Guided by the belief that seva is the highest form of contribution, he has led impactful initiatives including plantation drives, blood donation camps, food distribution drives, and child-focused education projects aimed at creating meaningful social impact.
+
+With over three years of leadership experience in the social sector, Mr. Lalwani also serves as a certified Art of Living Instructor, inspiring individuals toward inner peace and personal growth through meditation, yoga, and holistic living. He draws deep inspiration from the teachings of spiritual leader Gurudev Sri Sri Ravi Shankar, whose philosophy of service, peace, and human values has significantly influenced his journey in social service and personal development.
+
+Beyond his social impact work, Mr. Lalwani is an Entrepreneur and Investor, passionate about building sustainable ventures. He is a certified Music Producer and Sound Engineer, an Independent Artist, and the Founder & CEO (under registration) of Lalwani Music Company (LMC)—an independent record label dedicated to supporting and nurturing emerging artists.
+
+Academically, he is pursuing his Bachelor’s Degree in Classical Music (Vocal) from University of Rajasthan, combining academic excellence with his passion for music, creativity, and service. A strong advocate of fitness and healthy living, Mr. Lalwani believes in maintaining harmony between mind, body, and spirit.`,
+  blog: `Vision of The Vanrang Foundation:
+
+To build a compassionate, inclusive, and empowered society where individuals come together in the spirit of service, unity, and humanity—working towards the ideal of “One World, One Family.”`,
+};
 
 export default function TeamPage() {
   const [selected, setSelected] = useState(null);
@@ -111,12 +153,11 @@ export default function TeamPage() {
   return (
     <section
       className={theme.gridBg}
-      style={{ background: COLORS.background }} // palette background
+      style={{ background: COLORS.background }}
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-         
           <h1
             className={theme.headerTitle}
             style={{ color: COLORS.primary }}
@@ -132,7 +173,121 @@ export default function TeamPage() {
           </p>
         </div>
 
+        {/* Founder Section */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-bold text-center mb-6" style={{ color: COLORS.accent }}>
+            Founder
+          </h2>
+          <div className={theme.card + " max-w-2xl mx-auto"}>
+            <img
+              src={founder.image}
+              alt={founder.name}
+              className={theme.modalImg}
+              style={{
+                border: "4px solid " + COLORS.accent + "44",
+                width: "10rem",          // Increased from 8rem (w-32=8rem) to 10rem
+                height: "10rem",         // To keep it square
+                objectFit: "cover",
+              }}
+            />
+            <h3
+              className={theme.name}
+              style={{ color: COLORS.primary }}
+            >
+              {founder.name}
+            </h3>
+            <p
+              className={theme.role}
+              style={{ color: COLORS.secondary }}
+            >
+              {founder.role}
+            </p>
+            <button
+              onClick={() => setSelected(founder)}
+              className={theme.bioBtn}
+              style={{ color: COLORS.accent, fontWeight: 500 }}
+            >
+              View Bio
+            </button>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-6 md:flex-row md:justify-between ">
+          {/* Inspiration Section */}
+          <div className="mb-16 h-full">
+            <h2 className="text-2xl font-bold text-center mb-6" style={{ color: COLORS.accent }}>
+              Inspiration
+            </h2>
+            <div className={theme.card + " max-w-2xl mx-auto"}>
+              <img
+                src={inspiration.image}
+                alt={inspiration.name}
+                className={theme.modalImg}
+                style={{
+                  border: "4px solid " + COLORS.accent + "44",
+                  width: "10rem",      // Increased size
+                  height: "10rem",
+                  objectFit: "cover",
+                }}
+              />
+              <h3
+                className={theme.name}
+                style={{ color: COLORS.primary }}
+              >
+                {inspiration.name}
+              </h3>
+              <p
+                className={theme.role}
+                style={{ color: COLORS.secondary }}
+              >
+                {inspiration.role}
+              </p>
+              <p className={theme.modalBio} style={{ color: COLORS.textPrimary }}>
+                {inspiration.bio}
+              </p>
+            </div>
+          </div>
+
+          {/* Mentor Section */}
+          <div className="mb-16 h-full">
+            <h2 className="text-2xl font-bold text-center mb-6" style={{ color: COLORS.accent }}>
+              Mentor
+            </h2>
+            <div className={theme.card + " max-w-2xl mx-auto"}>
+              <img
+                src={mentor.image}
+                alt={mentor.name}
+                className={theme.modalImg}
+                style={{
+                  border: "4px solid " + COLORS.accent + "44",
+                  width: "10rem",      // Increased size
+                  height: "10rem",
+                  objectFit: "cover",
+                }}
+              />
+              <h3
+                className={theme.name}
+                style={{ color: COLORS.primary }}
+              >
+                {mentor.name}
+              </h3>
+              <p
+                className={theme.role}
+                style={{ color: COLORS.secondary }}
+              >
+                {mentor.role}
+              </p>
+              <p className={theme.modalBio} style={{ color: COLORS.textPrimary }}>
+                {mentor.bio}
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Team Grid */}
+        <h2 className="text-2xl font-bold text-center mb-8" style={{ color: COLORS.accent }}>
+          Core Team
+        </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {teamMembers.map((member, index) => (
             <div
@@ -170,7 +325,7 @@ export default function TeamPage() {
               >
                 View Bio
               </button>
-              <div className={theme.socialIconWrap}>
+              {/* <div className={theme.socialIconWrap}>
                 <a
                   href="#"
                   aria-label="LinkedIn"
@@ -195,7 +350,7 @@ export default function TeamPage() {
                 >
                   <FaInstagram />
                 </a>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>
@@ -228,7 +383,10 @@ export default function TeamPage() {
               alt={selected.name}
               className={theme.modalImg}
               style={{
-                border: "4px solid " + COLORS.accent + "44"
+                border: "4px solid " + COLORS.accent + "44",
+                ...(selected === founder || selected === mentor || selected === inspiration
+                  ? { width: "10rem", height: "10rem", objectFit: "cover" }
+                  : {}),
               }}
             />
             <h2
@@ -249,12 +407,14 @@ export default function TeamPage() {
             >
               {selected.bio}
             </p>
-            <p
-              className={theme.modalBlog}
-              style={{ color: "#C89F23" }}
-            >
-              {selected.blog}
-            </p>
+            {selected.blog && (
+              <p
+                className={theme.modalBlog}
+                style={{ color: "#C89F23" }}
+              >
+                {selected.blog}
+              </p>
+            )}
           </div>
         </div>
       )}
