@@ -6,6 +6,7 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import React from "react";
 
 /**
  * Footer for The Vanrang Foundation
@@ -16,6 +17,26 @@ import { Link } from "react-router-dom";
  * - Background:var(--clr-background)| Tailwind: bg-background / text-background
  * - Surface:   var(--clr-surface)   | Tailwind: bg-surface / text-surface
  */
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function FooterLink({ to, children, ...props }) {
+  return (
+    <Link
+      to={to}
+      {...props}
+      onClick={(e) => {
+        if (props.onClick) props.onClick(e);
+        // Allow route change, then scroll to top:
+        setTimeout(() => scrollToTop(), 0);
+      }}
+    >
+      {children}
+    </Link>
+  );
+}
 
 export default function Footer() {
   // All icons use the primary color on white/neutral background for accessibility and theme
@@ -106,22 +127,22 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 text-base text-text-secondary">
               <li className="hover:text-primary-dark cursor-pointer transition-colors">
-                <Link to="/contact">Volunteer Opportunities</Link>
+                <FooterLink to="/contact">Volunteer Opportunities</FooterLink>
               </li>
               <li className="hover:text-primary-dark cursor-pointer transition-colors">
-                <Link to="/about">School Programs</Link>
+                <FooterLink to="/contact">School Programs</FooterLink>
               </li>
               <li className="hover:text-primary-dark cursor-pointer transition-colors">
-                <Link to="/plantation-drives">Community Drives</Link>
+                <FooterLink to="/contact">Community Drives</FooterLink>
               </li>
               <li className="hover:text-primary-dark cursor-pointer transition-colors">
-                <Link to="/about">Youth Green Leaders</Link>
+                <FooterLink to="/contact">Youth Green Leaders</FooterLink>
               </li>
               <li className="hover:text-primary-dark cursor-pointer transition-colors">
-                <Link to="/plantation-drives">Tree Plantation Events</Link>
+                <FooterLink to="/contact">Tree Plantation Events</FooterLink>
               </li>
               <li className="hover:text-primary-dark cursor-pointer transition-colors">
-                <Link to="/contact">Contact Us</Link>
+                <FooterLink to="/contact">Contact Us</FooterLink>
               </li>
             </ul>
           </div>
@@ -133,52 +154,52 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3 text-base text-text-secondary">
               <li>
-                <Link
+                <FooterLink
                   to="/"
                   className="hover:text-primary-dark transition-colors"
                 >
                   Home
-                </Link>
+                </FooterLink>
               </li>
               <li>
-                <Link
+                <FooterLink
                   to="/about"
                   className="hover:text-primary-dark transition-colors"
                 >
                   About
-                </Link>
+                </FooterLink>
               </li>
               <li>
-                <Link
+                <FooterLink
                   to="/plantation-drives"
                   className="hover:text-primary-dark transition-colors"
                 >
                   Plantation Drives
-                </Link>
+                </FooterLink>
               </li>
               <li>
-                <Link
+                <FooterLink
                   to="/gallery"
                   className="hover:text-primary-dark transition-colors"
                 >
                   Gallery
-                </Link>
+                </FooterLink>
               </li>
               <li>
-                <Link
+                <FooterLink
                   to="/contact"
                   className="hover:text-primary-dark transition-colors"
                 >
                   Contact / Volunteer
-                </Link>
+                </FooterLink>
               </li>
               <li>
-                <Link
+                <FooterLink
                   to="/team"
                   className="hover:text-primary-dark transition-colors"
                 >
                   Our Team
-                </Link>
+                </FooterLink>
               </li>
             </ul>
           </div>
@@ -194,18 +215,36 @@ export default function Footer() {
                   Registered Office:
                 </span>
                 <br />
-                189, Adarsh Colony, Daudpur
-                <br />
-                Alwar, Rajasthan, India – 301001
+                <a
+                  href="https://www.google.com/maps/place/THE+VANRANG+FOUNDATION/@27.572082,76.623481,14z/data=!4m6!3m5!1s0x39729954614bb1cd:0xa27c9c1ee1eab08b!8m2!3d27.5720816!4d76.6234807!16s%2Fg%2F11ylzs1klg?hl=en&entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D"
+                  className="hover:underline text-accent font-semibold transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open address in Google Maps"
+                  style={{ display: "inline-block", cursor: "pointer" }}
+                >
+                  189, Adarsh Colony, Daudpur
+                  <br />
+                  Alwar, Rajasthan, India – 301001
+                </a>
                 <br />
                 <br />
                 <span className="font-semibold text-primary">
                   Sub Office:
                 </span>
                 <br />
-                245, Malan Ki Gali, Hindu Pada
-                <br />
-                Vikas Path, Alwar, Rajasthan, India – 301001
+                <a
+                  href="https://www.google.com/maps/place/THE+VANRANG+FOUNDATION/@27.569098,76.60414,14z/data=!4m6!3m5!1s0x397299484a3e6e77:0x7d08413408bff84e!8m2!3d27.5690984!4d76.6041404!16s%2Fg%2F11ywh_bpzd?hl=en&entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D"
+                  className="hover:underline text-accent font-semibold transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open address in Google Maps"
+                  style={{ display: "inline-block", cursor: "pointer" }}
+                >
+                  245, Malan Ki Gali, Hindu Pada
+                  <br />
+                  Vikas Path, Alwar, Rajasthan, India – 301001
+                </a>
               </div>
             </div>
           </div>
@@ -287,12 +326,16 @@ export default function Footer() {
 
         {/* Divider/Bottom Bar */}
         <div className="border-t border-accent/30 mt-12 pt-6 text-center text-text-secondary text-base">
-          © {new Date().getFullYear()}{" "}
-          <span className="text-primary font-semibold">
-            The Vanrang Foundation
-          </span>{" "}
-          — One World One Family. All Rights Reserved.
+          <span>
+            ©️ 2026 <span className="text-secondary font-bold">The Vanrang Foundation</span>. All Rights Reserved.
+          </span>
           <br />
+          <span className="block">
+            <span className="text-secondary font-bold">The Vanrang Foundation</span> is an independent non-profit organization registered under Section 8 of the Companies Act, 2013.
+          </span>
+          <span className="block">
+            This website is for informational and charitable purposes only.
+          </span>
           <span className="text-sm text-secondary">
             Tech Partner:{" "}
             <a

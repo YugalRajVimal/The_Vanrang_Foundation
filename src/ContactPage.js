@@ -25,32 +25,24 @@ export default function ContactVolunteer() {
       style={{ backgroundColor: COLORS.background }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        {/* Header */}
-        <div className="mb-14">
+       
+
+        <div className="grid lg:grid-cols-1 gap-16">
+          {/* LEFT INFO PANEL */}
+          <div>
           <h1
             className="text-4xl md:text-5xl font-bold mb-4 font-serif"
             style={{ color: COLORS.primary }}
           >
+
             Connect with The Vanrang Foundation
           </h1>
-          <p className="font-medium" style={{ color: COLORS.textSecondary }}>
-            Home <span className="mx-2" style={{ color: COLORS.primary }}>›</span> Contact / Volunteer
-          </p>
-          <div className="mt-2 text-lg font-semibold" style={{ color: COLORS.secondary }}>
-            One World One Family
-          </div>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-16">
-          {/* LEFT CONTACT SECTION */}
-          <div>
             <h2
               className="text-3xl font-bold mb-8 font-serif"
               style={{ color: COLORS.primary }}
             >
-              Reach Out • Volunteer • Plant Hope
+              Connect, Contribute, Create Change
             </h2>
-
             {/* Country Badge */}
             <div
               className="rounded-full inline-flex items-center gap-3 px-5 py-2 mb-6 font-semibold"
@@ -58,145 +50,162 @@ export default function ContactVolunteer() {
             >
               <span>🇮🇳 India</span>
             </div>
-
-            {/* Address */}
-            <div className="mb-8 leading-relaxed" style={{ color: COLORS.textPrimary }}>
-              <div className="mb-3">
-                <span className="font-semibold" style={{ color: COLORS.secondary }}>
-                  Registered Office:
-                </span>
-                <br />
-                189, Adarsh Colony, Daudpur<br />
-                Alwar, Rajasthan, India – 301001
+            {/* Responsive 2 column info - 1 col on mobile, 2 col on md+ */}
+            <div className="mb-8 leading-relaxed grid grid-cols-1 md:grid-cols-2 gap-8" style={{ color: COLORS.textPrimary }}>
+              <div className="flex flex-col justify-between">
+                <div className="mb-3">
+                  <span className="font-semibold" style={{ color: COLORS.secondary }}>
+                    Registered Office:
+                  </span>
+                  <br />
+                  189, Adarsh Colony, Daudpur<br />
+                  Alwar, Rajasthan, India – 301001
+                </div>
+                {/* Phones */}
+                <div className="flex items-start gap-3 mt-6">
+                  <FaPhone style={{ color: COLORS.primary }} className="mt-1" />
+                  <div>
+                    <p className="font-semibold" style={{ color: COLORS.primary }}>
+                      Call Us For Queries
+                    </p>
+                    <div className="flex flex-col space-y-1 font-medium" style={{ color: COLORS.secondary }}>
+                      <a href="tel:+919783068493" className="hover:underline">{"+91 9783068493"}</a>
+                      <a href="tel:+919785720688" className="hover:underline">{"+91 9785720688"}</a>
+                      <a href="tel:+919256741759" className="hover:underline">{"+91 9256741759"}</a>
+                    </div>
+                  </div>
+                </div>
+                {/* WhatsApp */}
+                <a
+                  href="https://wa.me/919783068493"
+                  className="flex items-center gap-3 mt-5 font-semibold hover:underline"
+                  style={{ color: COLORS.primary }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaWhatsapp />
+                  WhatsApp – Start a Green Conversation
+                </a>
               </div>
-              <div>
-                <span className="font-semibold" style={{ color: COLORS.secondary }}>
-                  Sub Office:
-                </span>
-                <br />
-                245, Malan Ki Gali, Hindu Pada<br />
-                Vikas Path, Alwar, Rajasthan, India – 301001
-              </div>
-            </div>
-
-            {/* Phones */}
-            <div className="flex items-start gap-4 mb-4">
-              <FaPhone style={{ color: COLORS.primary }} className="mt-1" />
-              <div>
-                <p className="font-semibold" style={{ color: COLORS.primary }}>
-                  Call Us for Green Collaboration
-                </p>
-                <div className="flex flex-col space-y-1 font-medium" style={{ color: COLORS.secondary }}>
-                  <a href="tel:+919783068493" className="hover:underline">{"+91 9783068493"}</a>
-                  <a href="tel:+919785720688" className="hover:underline">{"+91 9785720688"}</a>
-                  <a href="tel:+919256741759" className="hover:underline">{"+91 9256741759"}</a>
+              <div className="flex flex-col justify-between">
+                <div>
+                  <span className="font-semibold" style={{ color: COLORS.secondary }}>
+                    Sub Office:
+                  </span>
+                  <br />
+                  245, Malan Ki Gali, Hindu Pada<br />
+                  Vikas Path, Alwar, Rajasthan, India – 301001
+                </div>
+                {/* Emails */}
+                <div className="flex items-start gap-3 mt-6">
+                  <FaEnvelope style={{ color: COLORS.primary }} className="mt-1" />
+                  <div>
+                    <p className="font-semibold" style={{ color: COLORS.primary }}>
+                      Email for Enquiries
+                    </p>
+                    <div className="flex flex-col space-y-1 font-medium break-all" style={{ color: COLORS.secondary }}>
+                      <a href="mailto:foundervanrang.org@gmail.com" className="hover:underline">
+                        foundervanrang.org@gmail.com
+                      </a>
+                      <a href="mailto:info@thevanrangfoundation.org" className="hover:underline">
+                        info@thevanrangfoundation.org
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                {/* Social Links */}
+                <div
+                  className="mt-8 flex flex-wrap gap-5 font-medium items-center"
+                  style={{ color: COLORS.textPrimary }}
+                >
+                  <a
+                    href="https://www.instagram.com/thevanrangfoundation?igsh=ZG1sa20yN2kzcHdp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ transition: "color 0.2s" }}
+                    className="hover:underline"
+                    onMouseOver={e => (e.currentTarget.style.color = COLORS.primary)}
+                    onMouseOut={e => (e.currentTarget.style.color = COLORS.textPrimary)}
+                  >
+                    Instagram
+                  </a>
+                  <a
+                    href="https://www.threads.com/@thevanrangfoundation"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ transition: "color 0.2s" }}
+                    className="hover:underline"
+                    onMouseOver={e => (e.currentTarget.style.color = COLORS.primary)}
+                    onMouseOut={e => (e.currentTarget.style.color = COLORS.textPrimary)}
+                  >
+                    Threads
+                  </a>
+                  <a
+                    href="https://x.com/vanrangofficial"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ transition: "color 0.2s" }}
+                    className="hover:underline"
+                    onMouseOver={e => (e.currentTarget.style.color = COLORS.primary)}
+                    onMouseOut={e => (e.currentTarget.style.color = COLORS.textPrimary)}
+                  >
+                    X (Twitter)
+                  </a>
+                  <a
+                    href="https://youtube.com/@vanrangfoundation?si=MEivV0bBvFrxjFTP"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ transition: "color 0.2s" }}
+                    className="hover:underline"
+                    onMouseOver={e => (e.currentTarget.style.color = COLORS.primary)}
+                    onMouseOut={e => (e.currentTarget.style.color = COLORS.textPrimary)}
+                  >
+                    YouTube
+                  </a>
+                  <a
+                    href="https://www.facebook.com/share/1AixPGcMh9/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ transition: "color 0.2s" }}
+                    className="hover:underline"
+                    onMouseOver={e => (e.currentTarget.style.color = COLORS.primary)}
+                    onMouseOut={e => (e.currentTarget.style.color = COLORS.textPrimary)}
+                  >
+                    Facebook
+                  </a>
+                  <a
+                    href="https://linkedin.com/company/the-vanrang-foundation"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ transition: "color 0.2s" }}
+                    className="hover:underline"
+                    onMouseOver={e => (e.currentTarget.style.color = COLORS.primary)}
+                    onMouseOut={e => (e.currentTarget.style.color = COLORS.textPrimary)}
+                  >
+                    LinkedIn
+                  </a>
                 </div>
               </div>
-            </div>
-
-            {/* Emails */}
-            <div className="flex items-start gap-4 mb-8">
-              <FaEnvelope style={{ color: COLORS.primary }} className="mt-1" />
-              <div>
-                <p className="font-semibold" style={{ color: COLORS.primary }}>
-                  Email for Enquiries or Ideas
-                </p>
-                <div className="flex flex-col space-y-1 font-medium break-all" style={{ color: COLORS.secondary }}>
-                  <a href="mailto:foundervanrang.org@gmail.com" className="hover:underline">
-                    foundervanrang.org@gmail.com
-                  </a>
-                  <a href="mailto:info@thevanrangfoundation.org" className="hover:underline">
-                    info@thevanrangfoundation.org
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* WhatsApp */}
-            <a
-              href="https://wa.me/919783068493"
-              className="flex items-center gap-4 mb-10 font-semibold hover:underline"
-              style={{ color: COLORS.primary }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaWhatsapp />
-              WhatsApp – Start a Green Conversation
-            </a>
-
-            {/* Social Links */}
-            <div
-              className="mt-8 flex flex-wrap gap-5 font-medium items-center"
-              style={{ color: COLORS.textPrimary }}
-            >
-              <a
-                href="https://www.instagram.com/thevanrangfoundation?igsh=ZG1sa20yN2kzcHdp"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ transition: "color 0.2s" }}
-                className="hover:underline"
-                onMouseOver={e => (e.currentTarget.style.color = COLORS.primary)}
-                onMouseOut={e => (e.currentTarget.style.color = COLORS.textPrimary)}
-              >
-                Instagram
-              </a>
-              <a
-                href="https://www.threads.com/@thevanrangfoundation"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ transition: "color 0.2s" }}
-                className="hover:underline"
-                onMouseOver={e => (e.currentTarget.style.color = COLORS.primary)}
-                onMouseOut={e => (e.currentTarget.style.color = COLORS.textPrimary)}
-              >
-                Threads
-              </a>
-              <a
-                href="https://x.com/vanrangofficial"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ transition: "color 0.2s" }}
-                className="hover:underline"
-                onMouseOver={e => (e.currentTarget.style.color = COLORS.primary)}
-                onMouseOut={e => (e.currentTarget.style.color = COLORS.textPrimary)}
-              >
-                X (Twitter)
-              </a>
-              <a
-                href="https://youtube.com/@vanrangfoundation?si=MEivV0bBvFrxjFTP"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ transition: "color 0.2s" }}
-                className="hover:underline"
-                onMouseOver={e => (e.currentTarget.style.color = COLORS.primary)}
-                onMouseOut={e => (e.currentTarget.style.color = COLORS.textPrimary)}
-              >
-                YouTube
-              </a>
-              <a
-                href="https://www.facebook.com/share/1AixPGcMh9/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ transition: "color 0.2s" }}
-                className="hover:underline"
-                onMouseOver={e => (e.currentTarget.style.color = COLORS.primary)}
-                onMouseOut={e => (e.currentTarget.style.color = COLORS.textPrimary)}
-              >
-                Facebook
-              </a>
-              <a
-                href="https://linkedin.com/company/the-vanrang-foundation"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ transition: "color 0.2s" }}
-                className="hover:underline"
-                onMouseOver={e => (e.currentTarget.style.color = COLORS.primary)}
-                onMouseOut={e => (e.currentTarget.style.color = COLORS.textPrimary)}
-              >
-                LinkedIn
-              </a>
             </div>
           </div>
+
+           {/* Header */}
+        <div className="mt-4">
+          <h1
+            className="text-4xl md:text-5xl font-bold mb-4 font-serif"
+            style={{ color: COLORS.primary }}
+          >
+            Volunteer Registration Form – The Vanrang Foundation
+
+          </h1>
+          <div className="font-medium mb-3" style={{ color: COLORS.textSecondary }}>
+            Thank you for your interest in volunteering with The Vanrang Foundation.
+          </div>
+          <div className="mb-1" style={{ color: COLORS.textSecondary, fontSize: 16 }}>
+            Please fill out this form to register as a volunteer. Our team will contact you shortly.
+          </div>
+        
+        </div>
 
           {/* RIGHT FORM */}
           <div
@@ -210,60 +219,382 @@ export default function ContactVolunteer() {
               className="text-2xl font-bold mb-6 text-center font-serif"
               style={{ color: COLORS.primary }}
             >
-              Volunteer / Contact Form
+              Volunteer Registration Form
             </h2>
 
             <form className="space-y-5">
-              <div className="grid md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="rounded-lg p-3 w-full outline-none"
-                  style={{
-                    border: `1.5px solid ${COLORS.accent}`,
-                    color: COLORS.textPrimary
-                  }}
-                />
+              {/* Email */}
+              <div>
+                <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+                  Email <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="email"
-                  placeholder="Your Email"
+                  required
                   className="rounded-lg p-3 w-full outline-none"
+                  placeholder="Your Email"
                   style={{
                     border: `1.5px solid ${COLORS.accent}`,
                     color: COLORS.textPrimary
                   }}
                 />
               </div>
-              <div className="grid md:grid-cols-2 gap-4">
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  className="rounded-lg p-3 w-full outline-none"
-                  style={{
-                    border: `1.5px solid ${COLORS.accent}`,
-                    color: COLORS.textPrimary
-                  }}
-                />
+              {/* Full Name */}
+              <div>
+                <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+                  Full Name <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="text"
-                  placeholder="City / Village"
+                  required
                   className="rounded-lg p-3 w-full outline-none"
+                  placeholder="Your Full Name"
                   style={{
                     border: `1.5px solid ${COLORS.accent}`,
                     color: COLORS.textPrimary
                   }}
                 />
               </div>
-              <textarea
-                placeholder="How would you like to support? (Volunteer, join plantation drives, lead school awareness, build greener communities...)"
-                className="rounded-lg p-3 w-full h-32 outline-none"
-                style={{
-                  border: `1.5px solid ${COLORS.accent}`,
-                  color: COLORS.textPrimary
-                }}
-              />
-
-              {/* Checkbox */}
+              {/* Mother's/Father's Name */}
+              <div>
+                <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+                  Mother Name / Father Name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  className="rounded-lg p-3 w-full outline-none"
+                  placeholder="Parent Name"
+                  style={{
+                    border: `1.5px solid ${COLORS.accent}`,
+                    color: COLORS.textPrimary
+                  }}
+                />
+              </div>
+              {/* Date of Birth */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+                    Date of Birth <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="date"
+                    required
+                    className="rounded-lg p-3 w-full outline-none"
+                    style={{
+                      border: `1.5px solid ${COLORS.accent}`,
+                      color: COLORS.textPrimary
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+                    Date
+                  </label>
+                  <input
+                    type="date"
+                    className="rounded-lg p-3 w-full outline-none"
+                    style={{
+                      border: `1.5px solid ${COLORS.accent}`,
+                      color: COLORS.textPrimary
+                    }}
+                  />
+                </div>
+              </div>
+              {/* Gender */}
+              <div>
+                <label className="block font-semibold mb-2" style={{ color: COLORS.textPrimary }}>
+                  Gender <span className="text-red-500">*</span>
+                </label>
+                <div className="flex flex-wrap gap-6 items-center">
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="gender"
+                      required
+                      value="Male"
+                      className="accent-orange-600"
+                    />
+                    Male
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="gender"
+                      value="Female"
+                      className="accent-orange-600"
+                    />
+                    Female
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="gender"
+                      value="Prefer not to say"
+                      className="accent-orange-600"
+                    />
+                    Prefer not to say
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="gender"
+                      value="Other"
+                      className="accent-orange-600"
+                    />
+                    Other
+                  </label>
+                </div>
+              </div>
+              {/* Mobile Number */}
+              <div>
+                <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+                  Mobile Number <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  required
+                  className="rounded-lg p-3 w-full outline-none"
+                  placeholder="Your Mobile Number"
+                  style={{
+                    border: `1.5px solid ${COLORS.accent}`,
+                    color: COLORS.textPrimary
+                  }}
+                />
+              </div>
+              {/* Current Address */}
+              <div>
+                <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+                  Current Address <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  required
+                  className="rounded-lg p-3 w-full outline-none h-20"
+                  placeholder="Enter your full current address"
+                  style={{
+                    border: `1.5px solid ${COLORS.accent}`,
+                    color: COLORS.textPrimary
+                  }}
+                />
+              </div>
+              {/* City & State */}
+              <div>
+                <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+                  City &amp; State <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  required
+                  className="rounded-lg p-3 w-full outline-none"
+                  placeholder="City & State"
+                  style={{
+                    border: `1.5px solid ${COLORS.accent}`,
+                    color: COLORS.textPrimary
+                  }}
+                />
+              </div>
+              {/* Current Occupation */}
+              <div>
+                <label className="block font-semibold mb-2" style={{ color: COLORS.textPrimary }}>
+                  Current Occupation <span className="text-red-500">*</span>
+                </label>
+                <div className="flex flex-wrap gap-6 items-center">
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="occupation"
+                      value="Student"
+                      required
+                      className="accent-orange-600"
+                    />
+                    Student
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="occupation"
+                      value="Working Professional"
+                      className="accent-orange-600"
+                    />
+                    Working Professional
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="occupation"
+                      value="Self-employed"
+                      className="accent-orange-600"
+                    />
+                    Self-employed
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="occupation"
+                      value="Other"
+                      className="accent-orange-600"
+                    />
+                    Other
+                  </label>
+                </div>
+              </div>
+              {/* Areas of Interest */}
+              <div>
+                <label className="block font-semibold mb-2" style={{ color: COLORS.textPrimary }}>
+                  Areas of Interest <span className="text-red-500">*</span>
+                </label>
+                <div className="flex flex-wrap gap-6 items-center">
+                  <label className="flex items-center gap-2">
+                    <input type="checkbox" name="areas" value="Education Support" required className="accent-orange-600"/>
+                    Education Support
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="checkbox" name="areas" value="Social Media & Content" className="accent-orange-600"/>
+                    Social Media &amp; Content
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="checkbox" name="areas" value="Event Management" className="accent-orange-600"/>
+                    Event Management
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="checkbox" name="areas" value="Fundraising" className="accent-orange-600"/>
+                    Fundraising
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="checkbox" name="areas" value="Field Work" className="accent-orange-600"/>
+                    Field Work
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="checkbox" name="areas" value="Administration" className="accent-orange-600"/>
+                    Administration
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="checkbox" name="areas" value="Graphic Design" className="accent-orange-600"/>
+                    Graphic Design
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="checkbox" name="areas" value="Other" className="accent-orange-600"/>
+                    Other
+                  </label>
+                </div>
+              </div>
+              {/* Preferred Mode of Volunteering */}
+              <div>
+                <label className="block font-semibold mb-2" style={{ color: COLORS.textPrimary }}>
+                  Preferred Mode of Volunteering <span className="text-red-500">*</span>
+                </label>
+                <div className="flex flex-wrap gap-6 items-center">
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="mode" value="Online" required className="accent-orange-600"/>
+                    Online
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="mode" value="Offline" className="accent-orange-600"/>
+                    Offline
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="mode" value="Both" className="accent-orange-600"/>
+                    Both
+                  </label>
+                </div>
+              </div>
+              {/* Availability */}
+              <div>
+                <label className="block font-semibold mb-2" style={{ color: COLORS.textPrimary }}>
+                  Availability <span className="text-red-500">*</span>
+                </label>
+                <div className="flex flex-wrap gap-6 items-center">
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="availability" value="Weekdays" required className="accent-orange-600"/>
+                    Weekdays
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="availability" value="Weekends" className="accent-orange-600"/>
+                    Weekends
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="availability" value="Flexible" className="accent-orange-600"/>
+                    Flexible
+                  </label>
+                </div>
+              </div>
+              {/* Hours per week */}
+              <div>
+                <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+                  How many hours can you volunteer per week? <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="number"
+                  min="1"
+                  step="1"
+                  required
+                  className="rounded-lg p-3 w-full outline-none"
+                  placeholder="e.g. 5"
+                  style={{
+                    border: `1.5px solid ${COLORS.accent}`,
+                    color: COLORS.textPrimary
+                  }}
+                />
+              </div>
+              {/* Prior volunteering experience */}
+              <div>
+                <label className="block font-semibold mb-2" style={{ color: COLORS.textPrimary }}>
+                  Do you have prior volunteering experience? <span className="text-red-500">*</span>
+                </label>
+                <div className="flex gap-8">
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="prior-volunteering" value="Yes" required className="accent-orange-600" />
+                    Yes
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="prior-volunteering" value="No" className="accent-orange-600" />
+                    No
+                  </label>
+                </div>
+              </div>
+              {/* If yes, describe briefly */}
+              <div>
+                <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+                  If yes, please describe briefly
+                </label>
+                <textarea
+                  className="rounded-lg p-3 w-full outline-none h-20"
+                  placeholder="Tell us about your experience"
+                  style={{
+                    border: `1.5px solid ${COLORS.accent}`,
+                    color: COLORS.textPrimary
+                  }}
+                />
+              </div>
+              {/* Why volunteer */}
+              <div>
+                <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+                  Why do you want to volunteer with The Vanrang Foundation?
+                </label>
+                <textarea
+                  className="rounded-lg p-3 w-full outline-none h-20"
+                  placeholder="What inspires you to volunteer with us?"
+                  style={{
+                    border: `1.5px solid ${COLORS.accent}`,
+                    color: COLORS.textPrimary
+                  }}
+                />
+              </div>
+              {/* Special Skills */}
+              <div>
+                <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+                  Any special skills you have?
+                </label>
+                <textarea
+                  className="rounded-lg p-3 w-full outline-none h-20"
+                  placeholder="List any relevant skills"
+                  style={{
+                    border: `1.5px solid ${COLORS.accent}`,
+                    color: COLORS.textPrimary
+                  }}
+                />
+              </div>
+              {/* Agreement */}
               <div
                 className="flex items-center gap-2 text-sm"
                 style={{ color: COLORS.primary }}
@@ -271,19 +602,20 @@ export default function ContactVolunteer() {
                 <input
                   type="checkbox"
                   id="agree"
+                  required
+                  className="accent-orange-600"
                   style={{
                     accentColor: COLORS.primary
                   }}
                 />
                 <label htmlFor="agree">
-                  I agree to receive updates regarding environmental programs and events.
+                  I confirm that the information provided above is true and I agree to volunteer with The Vanrang Foundation as per organizational guidelines. <span className="text-red-500">*</span>
                 </label>
               </div>
-
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full py-3 rounded-lg font-semibold transition"
+                className="w-full py-3 rounded-lg font-semibold transition mt-2"
                 style={{
                   backgroundColor: COLORS.primary,
                   color: COLORS.surface
@@ -291,7 +623,7 @@ export default function ContactVolunteer() {
                 onMouseOver={e => (e.currentTarget.style.backgroundColor = COLORS.secondary)}
                 onMouseOut={e => (e.currentTarget.style.backgroundColor = COLORS.primary)}
               >
-                Send Your Message
+                Submit Registration
               </button>
             </form>
 
@@ -317,7 +649,7 @@ export default function ContactVolunteer() {
         </div>
       </div>
       {/* Location Maps */}
-      <div className="mt-16 grid gap-8 md:grid-cols-2 max-w-7xl mx-auto mx-4">
+      <div className="mt-16 grid gap-8 md:grid-cols-2 max-w-7xl mx-auto mx-4 px-4">
         {/* Registered Office Map */}
         <div>
           <h3
