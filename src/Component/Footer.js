@@ -201,6 +201,31 @@ export default function Footer() {
                   Our Team
                 </FooterLink>
               </li>
+              {/* Added: Terms & Conditions, Privacy Policy, Donate */}
+              <li>
+                <FooterLink
+                  to="/terms-and-conditions"
+                  className="hover:text-primary-dark transition-colors"
+                >
+                  Terms &amp; Conditions
+                </FooterLink>
+              </li>
+              <li>
+                <FooterLink
+                  to="/privacy-policy"
+                  className="hover:text-primary-dark transition-colors"
+                >
+                  Privacy Policy
+                </FooterLink>
+              </li>
+              <li>
+                <FooterLink
+                  to="/donate"
+                  className="hover:text-primary-dark transition-colors"
+                >
+                  Donate
+                </FooterLink>
+              </li>
             </ul>
           </div>
 

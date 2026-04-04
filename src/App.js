@@ -18,6 +18,8 @@ import PlantationGallery from './GalleryPage'
 import ContactVolunteer from './ContactPage'
 import TeamPage from './TeamPage'
 import DonationPage from './DonatePage'
+import PrivacyPolicy from './Component/PrivacyPolicy'
+import TermsAndConditions from './Component/TermsAndCondition'
 
 
 const Home = () => <div>
@@ -30,6 +32,7 @@ const Home = () => <div>
 </div>
 
 const App = () => {
+  
   return (
     <Router>
       <Navbar />
@@ -41,6 +44,12 @@ const App = () => {
         <Route path="/contact" element={<ContactVolunteer />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/donate" element={<DonationPage />} />
+
+      <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
+
 
 
       </Routes>
