@@ -24,11 +24,12 @@ import TermsAndConditions from './Component/TermsAndCondition'
 
 const Home = () => <div>
   <HeroSection/>
+  <GalleryCarousel/>
   <AboutUs />
   <TransparencySection/>
   <VolunteerSection />
   <ContactSection/>
-  <GalleryCarousel/>
+  
 </div>
 
 const App = () => {
