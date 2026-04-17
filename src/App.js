@@ -20,6 +20,8 @@ import TeamPage from './TeamPage'
 import DonationPage from './DonatePage'
 import PrivacyPolicy from './Component/PrivacyPolicy'
 import TermsAndConditions from './Component/TermsAndCondition'
+import CertificationPage from './CertificationPage'
+import CausesPage from './CausesPage'
 
 
 const Home = () => <div>
@@ -45,6 +47,10 @@ const App = () => {
         <Route path="/contact" element={<ContactVolunteer />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/donate" element={<DonationPage />} />
+      <Route path="/certifications" element={<CertificationPage/>} />
+      <Route path="/causes" element={<CausesPage />} />
+ 
+ 
 
       <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 

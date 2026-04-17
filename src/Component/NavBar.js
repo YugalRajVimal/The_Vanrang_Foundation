@@ -30,8 +30,11 @@ const navLinks = [
   { name: "Plantation Drives", to: "/plantation-drives", icon: FaTree },
   { name: "Gallery", to: "/gallery", icon: FaImages },
   { name: "Team", to: "/team", icon: FaUserFriends },
+  { name: "Causes", to: "/causes", icon: FaTree },
+  { name: "Certifications", to: "/certifications", icon: FaUsers },
   { name: "Contact / Volunteer", to: "/contact", icon: FaUsers },
-  { name: "Donate", to: "/donate", icon: FaHeart },
+
+  // { name: "Donate", to: "/donate", icon: FaHeart },
 ];
 
 const DONATE_URL = "/donate";
@@ -148,7 +151,7 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex gap-8 font-medium text-text-secondary">
-            {navLinks.slice(0, 6).map((link, idx) => (
+            {navLinks.slice(0).map((link, idx) => (
               <Link
                 key={link.to}
                 to={link.to}
@@ -161,17 +164,17 @@ export default function Navbar() {
               </Link>
             ))}
             {/* Insert Donate as a nav link (hidden on mobile) */}
-            <Link
-              key={navLinks[6].to}
-              to={navLinks[6].to}
+            {/* <Link
+              key={navLinks[5].to}
+              to={navLinks[5].to}
               className="ml-2 hidden xl:inline-block font-semibold hover:text-primary transition-all duration-200 text-pink-700"
               style={{
-                borderBottom: location.pathname === navLinks[6].to ? '2px solid var(--primary)' : 'none',
-                color: location.pathname === navLinks[6].to ? 'var(--primary)' : undefined
+                borderBottom: location.pathname === navLinks[5].to ? '2px solid var(--primary)' : 'none',
+                color: location.pathname === navLinks[5].to ? 'var(--primary)' : undefined
               }}
             >
-              {navLinks[6].name}
-            </Link>
+              {navLinks[5].name}
+            </Link> */}
           </div>
 
           {/* Desktop Donate */}

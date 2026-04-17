@@ -1,0 +1,29 @@
+CertificationPage.js:34 Encountered two children with the same key, `Certificate of Completion - Plantation Drive`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+
+CertificationPage.js:34 Encountered two children with the same key, `Appreciation Certificate - Volunteer`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+Footer.js:70 In HTML, <div> cannot be a descendant of <p>.
+This will cause a hydration error.
+
+  <App>
+    <BrowserRouter>
+      <Router basename={undefined} location={{pathname:"...", ...}} navigationType="POP" navigator={{action:"POP", ...}} ...>
+        <Navbar>
+        <Routes>
+        <Footer>
+          <footer className="bg-backgro...">
+            <div className="mx-auto px...">
+              <div className="grid md:gr...">
+                <div>
+                  <img>
+>                 <p className="mb-3 font-black text-2xl font-serif text-primary">
+>                   <div className="text-accent text-base font-bold">
+                  ...
+                ...
+              ...
+chext_driver.js:539 Initialized driver at: Fri Apr 17 2026 13:21:23 GMT+0530 (India Standard Time)
+pdf.worker.min.js:1 Failed to load module script: The server responded with a non-JavaScript MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec.
+util.js:385 Warning: Setting up fake worker.
+pdf.worker.min.js:1 Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec.
+CertificationPage.js:51 Warning: Error: Setting up fake worker failed: "Failed to fetch dynamically imported module: http://localhost:3000/pdfjs/pdf.worker.min.js".
+chext_loader.js:73 Initialized chextloader at: 1776412284090
+﻿

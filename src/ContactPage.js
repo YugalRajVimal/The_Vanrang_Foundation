@@ -1,9 +1,11 @@
+import React, { useState, useRef } from "react";
 import {
   FaMapMarkerAlt,
   FaPhone,
   FaEnvelope,
   FaWhatsapp,
-  FaLeaf
+  FaLeaf,
+  FaBug
 } from "react-icons/fa";
 import GalleryCarousel from "./Component/GalleryCarousel";
 
@@ -18,16 +20,227 @@ const COLORS = {
   textSecondary: "#6B6B6B"
 };
 
+function BugReportModal({ open, onClose }) {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    title: "",
+    screenshot: null,
+    description: ""
+  });
+  const [screenshotName, setScreenshotName] = useState("");
+  const fileInputRef = useRef(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  if (!open) return null;
+
+  return (
+    <div
+      className="fixed z-50 inset-0 flex items-center justify-center"
+      style={{ background: "rgba(0,0,0,0.35)" }}
+      aria-modal="true"
+      tabIndex={-1}
+    >
+      <div
+        className="relative bg-white rounded-xl p-8 max-w-xl w-full shadow-2xl border-t-8"
+        style={{ borderTopColor: COLORS.primary }}
+        onClick={e => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          aria-label="Close bug report modal"
+          className="absolute right-4 top-4 text-xl text-gray-600 hover:text-gray-900"
+        >
+          &times;
+        </button>
+        <div className="flex items-center gap-2 mb-4">
+          <FaBug style={{ color: COLORS.primary }} size={22} />
+          <h2 className="font-bold text-xl" style={{ color: COLORS.primary }}>
+            Report a Bug
+          </h2>
+        </div>
+        {submitted ? (
+          <div className="text-green-600 font-bold text-center py-4">
+            Thank you! Your bug report has been submitted.
+          </div>
+        ) : (
+        <form
+          className="space-y-4"
+          onSubmit={e => {
+            e.preventDefault();
+            setSubmitted(true);
+            setTimeout(() => {
+              setSubmitted(false);
+              onClose();
+              setForm({
+                name: "",
+                email: "",
+                phone: "",
+                title: "",
+                screenshot: null,
+                description: ""
+              });
+              setScreenshotName("");
+            }, 1600);
+            // Here you would handle the bug report form submission
+          }}
+        >
+          <div>
+            <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+              Name <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              required
+              className="rounded-lg p-2 w-full outline-none"
+              placeholder="Your Name"
+              value={form.name}
+              onChange={e => setForm({ ...form, name: e.target.value })}
+              style={{
+                border: `1.5px solid ${COLORS.accent}`,
+                color: COLORS.textPrimary,
+              }}
+            />
+          </div>
+          <div>
+            <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+              Email <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              required
+              className="rounded-lg p-2 w-full outline-none"
+              placeholder="you@email.com"
+              value={form.email}
+              onChange={e => setForm({ ...form, email: e.target.value })}
+              style={{
+                border: `1.5px solid ${COLORS.accent}`,
+                color: COLORS.textPrimary,
+              }}
+            />
+          </div>
+          <div>
+            <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              className="rounded-lg p-2 w-full outline-none"
+              placeholder="Your phone number"
+              value={form.phone}
+              onChange={e => setForm({ ...form, phone: e.target.value })}
+              style={{
+                border: `1.5px solid ${COLORS.accent}`,
+                color: COLORS.textPrimary,
+              }}
+            />
+          </div>
+          <div>
+            <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+              Bug Title <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              required
+              className="rounded-lg p-2 w-full outline-none"
+              placeholder="Short bug summary"
+              value={form.title}
+              onChange={e => setForm({ ...form, title: e.target.value })}
+              style={{
+                border: `1.5px solid ${COLORS.accent}`,
+                color: COLORS.textPrimary,
+              }}
+            />
+          </div>
+          <div>
+            <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+              Screenshot (optional)
+            </label>
+            <div className="flex items-center gap-2">
+              <input
+                type="file"
+                ref={fileInputRef}
+                accept="image/*"
+                className="block"
+                style={{ border: "none", padding: 0 }}
+                onChange={e => {
+                  setForm({
+                    ...form,
+                    screenshot: e.target.files && e.target.files[0] || null,
+                  });
+                  setScreenshotName(
+                    e.target.files && e.target.files[0] ? e.target.files[0].name : ""
+                  );
+                }}
+              />
+              {screenshotName && (
+                <span className="text-sm text-green-600">{screenshotName}</span>
+              )}
+            </div>
+          </div>
+          <div>
+            <label className="block font-semibold mb-1" style={{ color: COLORS.textPrimary }}>
+              Bug Description <span className="text-red-500">*</span>
+            </label>
+            <textarea
+              required
+              className="rounded-lg p-2 w-full outline-none h-24"
+              placeholder="Please describe the bug in detail"
+              value={form.description}
+              onChange={e => setForm({ ...form, description: e.target.value })}
+              style={{
+                border: `1.5px solid ${COLORS.accent}`,
+                color: COLORS.textPrimary,
+              }}
+            />
+          </div>
+          <div className="flex justify-end mt-2">
+            <button
+              type="submit"
+              className="bg-[#E76F51] hover:bg-[#F4A261] text-white px-4 py-2 rounded-lg font-semibold transition"
+              style={{
+                backgroundColor: COLORS.primary
+              }}
+              onMouseOver={e => (e.currentTarget.style.backgroundColor = COLORS.secondary)}
+              onMouseOut={e => (e.currentTarget.style.backgroundColor = COLORS.primary)}
+            >
+              Submit Bug
+            </button>
+          </div>
+        </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function ContactVolunteer() {
+  const [bugModalOpen, setBugModalOpen] = useState(false);
+
   return (
     <section
       className="py-20 pt-32"
       style={{ backgroundColor: COLORS.background }}
     >
+      <BugReportModal open={bugModalOpen} onClose={() => setBugModalOpen(false)} />
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-       
-
-        <div className="grid lg:grid-cols-1 gap-16">
+        {/* Report a Bug Button (top right corner, mobile fixed bottom right) */}
+        <div className="relative">
+          <button
+            className="absolute right-0 top-0 flex items-center gap-2 px-4 py-2 bg-[#E76F51] text-white rounded-lg font-semibold shadow-md hover:bg-[#F4A261] transition z-20"
+            style={{
+              backgroundColor: COLORS.primary
+            }}
+            onClick={() => setBugModalOpen(true)}
+            onMouseOver={e => (e.currentTarget.style.backgroundColor = COLORS.secondary)}
+            onMouseOut={e => (e.currentTarget.style.backgroundColor = COLORS.primary)}
+          >
+            <FaBug size={18} />
+            Report a Bug
+          </button>
+        </div>
+        <div className="grid lg:grid-cols-1 gap-16 mt-12">
           {/* LEFT INFO PANEL */}
           <div>
           <h1
